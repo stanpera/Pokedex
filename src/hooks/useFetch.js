@@ -8,6 +8,8 @@ const useFetch = (url) => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+      setError(null);
+      
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -16,14 +18,20 @@ const useFetch = (url) => {
         const result = await response.json();
 
         if (result.results) {
-
           const pokemonDetailsPromises = result.results.map(async (pokemon) => {
             try {
               const res = await fetch(pokemon.url);
-              if (!res.ok) throw new Error("Wystąpił błąd w pobieraniu szczegółów Pokémona");
+              if (!res.ok)
+                throw new Error(
+                  "Wystąpił błąd w pobieraniu szczegółów Pokémona"
+                );
               return await res.json();
             } catch (err) {
-              console.error("Wystąpił błąd przy pobieraniu szczegółów dla", pokemon.name, err);
+              console.error(
+                "Wystąpił błąd przy pobieraniu szczegółów dla",
+                pokemon.name,
+                err
+              );
               return null;
             }
           });
@@ -41,22 +49,10 @@ const useFetch = (url) => {
       }
     };
 
-    if (url) {
-      fetchData();
-    }
+    fetchData();
   }, [url]);
 
   return { data, loading, error };
 };
 
 export default useFetch;
-
-
-
-
-
-
-
-
-
-

@@ -34,9 +34,9 @@ const Button = ({ children, onClick, to, color, size, disabled = false }) => {
           "bg-login-button-gradient hover:bg-hover-login-button-gradient",
         color === "logout" &&
           "bg-logout-button-gradient hover:bg-hover-logout-button-gradient",
-          size === "small" && "text-sm",
-          size === "medium" && "text-xl",
-          size === "large" && "text-2xl"
+        size === "small" && "text-sm",
+        size === "medium" && "text-xl",
+        size === "large" && "text-2xl"
       )}
     >
       {children}

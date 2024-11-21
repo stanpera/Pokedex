@@ -3,12 +3,13 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --backgroundColor: #ace8f6;
+  --backgroundColor: #B9DEFF;
+  --textColor: #272B5A
 }
 
 body {
@@ -16,6 +17,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: var(--textColor);
+  
 }
 #root {
   width: 100%;

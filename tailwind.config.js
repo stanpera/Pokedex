@@ -10,15 +10,15 @@ export default {
         "searching-pokemon": "#DC2626",
         "searching-pokemon-shadow": "#9a1919",
         "pokemon-card-shadow": "#a2a4a7",
-        "pokemon-card-details": "#6a788c"
+        "pokemon-card-details": "#6a788c",
       },
       backgroundImage: {
         "menu-button-gradient": "linear-gradient(to right, #DDAF00, #F5C542)",
         "hover-menu-button-gradient":
           "linear-gradient(to right, #af8b00, #e4aa0c)",
-        "login-button-gradient": "linear-gradient(to right, #007C00, #00b500)",
+        "login-button-gradient": "linear-gradient(to right, #00a300, #00d700)",
         "hover-login-button-gradient":
-          "linear-gradient(to right, #007200, #009900)",
+          "linear-gradient(to right, #008600, #00a700)",
         "logout-button-gradient": "linear-gradient(to right, #dd2f2f, #e45555)",
         "hover-logout-button-gradient":
           "linear-gradient(to right, #961919, #c32020)",
@@ -26,10 +26,12 @@ export default {
         "searching-pokemon-input":
           "linear-gradient(to right, #e35353, #e66565)",
         "pokemon-card": "linear-gradient(to right, #ccd0d7, #e8eaed)",
+        error: "linear-gradient(to right, #e21313, #f04b4b)",
       },
       fontFamily: {
         bangers: ["Bangers", "system-ui"],
-        itim: ["Itim", "serif"]
+        roboto: ["Roboto", "sans-serif"],
+        itim: ["Itim"],
       },
       screens: {
         "max-sm": { max: "639px" }, // Upewnij się, że breakpoint lg jest poprawnie ustawiony

@@ -1,16 +1,40 @@
-import { Link } from "react-router-dom";
 import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../context/LoginContext";
+import { NotificationContext } from "../../context/NotificationContext";
 import logoPokedex from "../../icons/logoPokedex.png";
 import Button from "../shared/Button";
 import ThemeSwitcher from "../shared/ThemeSwitcher";
 import UserLogo from "../shared/UserLogo";
+import { ThemeContext } from "../../context/ThemeContext";
+import clsx from "clsx";
 
 const Navigation = () => {
-  const { isLoggedIn, name, logout } = useContext(LoginContext);
+  const { isLoggedIn, handleSubmit, name } = useContext(LoginContext);
+  const { handleNotification } = useContext(NotificationContext);
+  const navigate = useNavigate();
+  const { theme } = useContext(ThemeContext);
+
+  const handleButtonClick = (path) => {
+    if (isLoggedIn) {
+      navigate(path);
+    } else {
+      handleNotification(
+        "Musisz być zalogowany, aby zobaczyć tę stronę.",
+        "secondary"
+      );
+    }
+  };
 
   return (
-    <nav className="flex w-full top-0 justify-between py-5 px-10 bg-navigation-gradient shadow-md shadow-navigation-shadow">
+    <nav
+      className={clsx(
+        "flex w-full top-0 justify-between py-5 px-10 shadow-md",
+        theme === "light"
+          ? "bg-navigation-gradient shadow-navigation-shadow"
+          : "bg-dark-navigation-gradient shadow-dark-black"
+      )}
+    >
       <div className="flex items-center">
         <Link to="/">
           <img src={logoPokedex} alt="Pokedex Logo" className="h-20" />
@@ -22,16 +46,32 @@ const Navigation = () => {
           <ThemeSwitcher />
         </div>
         <div className="flex space-x-4 max-sm:flex-col">
-          <Button to="favourites" color="menu" size="medium">
+          <Button
+            color="menu"
+            size="medium"
+            onClick={() => handleButtonClick("/favourites")}
+          >
             ULUBIONE
           </Button>
-          <Button to="arena" color="menu" size="medium">
+          <Button
+            color="menu"
+            size="medium"
+            onClick={() => handleButtonClick("/arena")}
+          >
             ARENA
           </Button>
-          <Button to="ranking" color="menu" size="medium">
+          <Button
+            color="menu"
+            size="medium"
+            onClick={() => handleButtonClick("/ranking")}
+          >
             RANKING
           </Button>
-          <Button to="edition" color="menu" size="medium">
+          <Button
+            color="menu"
+            size="medium"
+            onClick={() => handleButtonClick("/edition")}
+          >
             EDYCJA
           </Button>
           {!isLoggedIn && (
@@ -39,14 +79,16 @@ const Navigation = () => {
               ZALOGUJ
             </Button>
           )}
+          {!isLoggedIn && (
+            <Button to="registrationForm" color="login" size="medium">
+              ZAREJESTRUJ SIĘ
+            </Button>
+          )}
           {isLoggedIn && (
-            <Button color="logout" size="medium" onClick={logout}>
+            <Button color="logout" size="medium" onClick={handleSubmit}>
               WYLOGUJ
             </Button>
           )}
-          <Button to="registrationForm" color="login" size="medium">
-            ZAREJESTRUJ SIĘ
-          </Button>
         </div>
       </div>
     </nav>

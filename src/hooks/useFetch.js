@@ -9,7 +9,7 @@ const useFetch = (url) => {
     const fetchData = async () => {
       setLoading(true);
       setError(null);
-      
+
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -27,11 +27,6 @@ const useFetch = (url) => {
                 );
               return await res.json();
             } catch (err) {
-              console.error(
-                "Wystąpił błąd przy pobieraniu szczegółów dla",
-                pokemon.name,
-                err
-              );
               return null;
             }
           });

@@ -1,18 +1,18 @@
-import { useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import Button from "./Button"; // Zakładam, że masz komponent Button
+import RegistrationInput from "./registrationInput";
+import Button from "./Button";
+import { NotificationContext } from "../../context/NotificationContext";
+import { useNavigate } from "react-router-dom";
 
-// Schemat walidacji
 const schema = z
   .object({
     name: z
       .string()
       .min(3, { message: "Imię musi składać się z minimum 3 znaków" }),
-    email: z.string().regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, {
-      message: "Niepoprawny adres e-mail.",
-    }),
+    email: z.string().email({ message: "Niepoprawny adres e-mail." }),
     password: z
       .string()
       .regex(
@@ -30,9 +30,9 @@ const schema = z
   });
 
 const RegistrationForm = () => {
-  const [formData, setFormData] = useState(null);
+  const { handleNotification } = useContext(NotificationContext);
+  const navigate = useNavigate();
 
-  // Użycie React Hook Form
   const {
     register,
     handleSubmit,
@@ -41,11 +41,21 @@ const RegistrationForm = () => {
     resolver: zodResolver(schema),
   });
 
-  // Funkcja wysyłająca dane do serwera
   const onSubmit = async (data) => {
     try {
-      // Wysyłanie danych do API
-      const response = await fetch("http://localhost:3001/users", {
+      const checkResponse = await fetch(
+        `http://localhost:3000/users?email=${data.email}&name=${data.name}&password=${data.password}`
+      );
+      const existingUsers = await checkResponse.json();
+      if (existingUsers.length > 0) {
+        handleNotification(
+          "Użytkownik o podanym adresie e-mail już istnieje!",
+          "secondary"
+        );
+        return;
+      }
+
+      await fetch("http://localhost:3000/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,59 +66,48 @@ const RegistrationForm = () => {
           password: data.password,
         }),
       });
-
-      const result = await response.json();
-      console.log("Dane zapisane:", result);
-
-      // Można ustawić stan w React, aby zobaczyć zapisane dane
-      setFormData(result);
+      handleNotification("Zostałeś pomyślnie zarejestrowany!");
+      setTimeout(() => navigate("/loginForm"), 2000);
     } catch (error) {
-      console.error("Błąd przy zapisywaniu danych:", error);
+      handleNotification(
+        "Aktualnie nie ma możliwości rejestracji nowych użytkowników. Spróbuj ponownie później.",
+        "secondary"
+      );
     }
   };
 
   return (
-    <div className="flex flex-col items-center mt-10">
-      <h3 className="text-xl mb-4">Formularz rejestracyjny</h3>
+    <div className="flex flex-col items-center mt-32">
+      <h3 className="text-2xl mb-4">Formularz rejestracyjny</h3>
       <form
-        className="flex flex-col w-96 gap-y-2"
+        className="flex flex-col w-96 gap-y-3"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <input
-          className="text-center"
-          {...register("name")}
+        <RegistrationInput
+          register={register}
+          name="name"
           placeholder="Wpisz imię"
+          error={errors.name}
         />
-        {errors.name?.message && (
-          <p className="text-red-700 text-sm">{errors.name?.message}</p>
-        )}
-        <input
-          className="text-center"
-          {...register("email")}
-          placeholder="Wpisz e-mail"
+        <RegistrationInput
+          register={register}
+          name="email"
+          placeholder="Wpisz email"
+          error={errors.email}
         />
-        {errors.email?.message && (
-          <p className="text-red-700 text-sm">{errors.email?.message}</p>
-        )}
-        <input
-          className="text-center"
-          {...register("password")}
+        <RegistrationInput
+          register={register}
+          name="password"
           placeholder="Wpisz hasło"
+          error={errors.password}
         />
-        {errors.password?.message && (
-          <p className="text-red-700 text-sm">{errors.password?.message}</p>
-        )}
-        <input
-          className="text-center"
-          {...register("confirmPassword")}
+        <RegistrationInput
+          register={register}
+          name="confirmPassword"
           placeholder="Powtórz hasło"
+          error={errors.confirmPassword}
         />
-        {errors.confirmPassword?.message && (
-          <p className="text-red-700 text-sm">
-            {errors.confirmPassword?.message}
-          </p>
-        )}
-        <Button type="submit" color="login" size="small">
+        <Button type="submit" color="login" size="medium" className="mr-3">
           ZAREJESTRUJ SIĘ
         </Button>
       </form>

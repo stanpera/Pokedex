@@ -1,3 +1,7 @@
+import { useContext } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
+import clsx from "clsx";
+
 const PokemonCard = ({
   name,
   image,
@@ -6,37 +10,111 @@ const PokemonCard = ({
   baseExperience,
   ability,
 }) => {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div className="flex flex-col items-center bg-pokemon-card shadow-md shadow-pokemon-card-shadow py-10 rounded-lg w-96">
+    <div
+      className={clsx(
+        "flex flex-col items-center shadow-md py-10 rounded-lg w-[360px] hover:scale-105 hover:shadow-lg transform transition-all duration-200 ease-in-out",
+        theme === "light"
+          ? "bg-pokemon-card shadow-pokemon-card-shadow"
+          : "bg-dark-pokemon-card shadow-dark-pokemon-card-shadow"
+      )}
+    >
       <div className="flex justify-center">
         <img className="w-64" src={image} alt={name} />
       </div>
-      <h3 className=" text-3xl text-center leading-none capitalize font-bangers">{name}</h3>
+      <h3
+        className={clsx(
+          "text-3xl text-center leading-none capitalize font-bangers",
+          theme === "light"
+            ? "text-main-text-color"
+            : "text-dark-main-text-color"
+        )}
+      >
+        {name}
+      </h3>
       <div className="mt-5 w-3/4 flex justify-between">
         <div>
-          <p className="text-xl text-center mb-2 font-itim text-pokemon-card-details">
+          <p
+            className={clsx(
+              "text-xl text-center font-itim mb-2",
+              theme === "light"
+                ? "text-pokemon-card-details"
+                : "text-dark-pokemon-card-details"
+            )}
+          >
             {height}
-            <span className=" text-main-text-color block">
+            <span
+              className={clsx(
+                "block",
+                theme === "light"
+                  ? "text-main-text-color"
+                  : "text-dark-main-text-color"
+              )}
+            >
               Height
             </span>
           </p>
-          <p className="text-xl text-center font-itim text-pokemon-card-details">
+          <p
+            className={clsx(
+              "text-xl text-center font-itim",
+              theme === "light"
+                ? "text-pokemon-card-details"
+                : "text-dark-pokemon-card-details"
+            )}
+          >
             {weight}
-            <span className="text-main-text-color block">
+            <span
+              className={clsx(
+                "block",
+                theme === "light"
+                  ? "text-main-text-color"
+                  : "text-dark-main-text-color"
+              )}
+            >
               Weight
             </span>
           </p>
         </div>
         <div>
-          <p className="text-xl text-center mb-2 font-itim text-pokemon-card-details">
+          <p
+            className={clsx(
+              "text-xl text-center font-itim mb-2",
+              theme === "light"
+                ? "text-pokemon-card-details"
+                : "text-dark-pokemon-card-details"
+            )}
+          >
             {baseExperience}
-            <span className="text-main-text-color block">
+            <span
+              className={clsx(
+                "block",
+                theme === "light"
+                  ? "text-main-text-color"
+                  : "text-dark-main-text-color"
+              )}
+            >
               Base Experience
             </span>
           </p>
-          <p className="text-xl text-center font-itim text-pokemon-card-details">
+          <p
+            className={clsx(
+              "text-xl text-center font-itim",
+              theme === "light"
+                ? "text-pokemon-card-details"
+                : "text-dark-pokemon-card-details"
+            )}
+          >
             {ability}
-            <span className="text-main-text-color block">
+            <span
+              className={clsx(
+                "block",
+                theme === "light"
+                  ? "text-main-text-color"
+                  : "text-dark-main-text-color"
+              )}
+            >
               Ability
             </span>
           </p>
@@ -47,8 +125,3 @@ const PokemonCard = ({
 };
 
 export default PokemonCard;
-
-
-
-
-

@@ -1,23 +1,29 @@
-import { useState } from 'react';
-
+import { useContext, useState } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
+import clsx from "clsx";
 const ThemeSwitcher = () => {
-  const [theme, setTheme] = useState('light');
+  const { theme, setTheme } = useContext(ThemeContext);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
   return (
     <div className="flex justify-end items-center space-x-2 pb-2">
-      <span className="text-xs dark:text-gray-300"></span>
       <div
         onClick={toggleTheme}
-        className={`relative inline-flex items-center justify-center w-10 h-5 rounded-full transition-colors border-0 focus:ring-0 shadow-sm
-          ${theme === 'light' ? 'bg-[#D1D5DB] shadow-[#a8acb1]' : 'bg-gray-600 shadow-[#3c444e]'}`}
+        className={clsx(
+          "relative inline-flex items-center justify-center w-10 h-5 rounded-full transition-colors border-0 focus:ring-0 shadow-sm",
+          theme === "light"
+            ? "bg-switcherColor shadow-switcherShadow"
+            : "bg-dark-pokemon-card-details shadow-dark-red-shadow"
+        )}
       >
         <span
-          className={`absolute left-0 w-4 h-4 rounded-full transform transition-transform 
-            ${theme === 'dark' ? 'translate-x-6 bg-gray-900' : 'bg-white'}`}
+          className={clsx(
+            "absolute left-0 w-5 h-5 rounded-full transform transition-transform",
+            theme === "light" ? "bg-white" : "translate-x-6 bg-dark-red"
+          )}
         />
       </div>
     </div>
@@ -25,3 +31,9 @@ const ThemeSwitcher = () => {
 };
 
 export default ThemeSwitcher;
+
+
+
+
+
+

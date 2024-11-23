@@ -10,25 +10,31 @@ import RegistrationForm from "./components/shared/RegistrationForm";
 import LoginForm from "./components/shared/LoginForm";
 import Notification from "./components/shared/Notification";
 import { useContext } from "react";
+import { LoginProvider } from "./context/LoginContext.jsx";
 
 function App() {
   const { notification, notificationVariant } = useContext(NotificationContext);
   return (
     <>
       <BrowserRouter>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="favourites" element={<Favourites />} />
-          <Route path="arena" element={<Arena />} />
-          <Route path="ranking" element={<Ranking />} />
-          <Route path="edition" element={<Edition />} />
-          <Route path="registrationForm" element={<RegistrationForm />} />
-          <Route path="loginForm" element={<LoginForm />} />
-        </Routes>
-        {notification && (
-          <Notification variant={notificationVariant} message={notification} />
-        )}
+        <LoginProvider>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="favourites" element={<Favourites />} />
+            <Route path="arena" element={<Arena />} />
+            <Route path="ranking" element={<Ranking />} />
+            <Route path="edition" element={<Edition />} />
+            <Route path="registrationForm" element={<RegistrationForm />} />
+            <Route path="loginForm" element={<LoginForm />} />
+          </Routes>
+          {notification && (
+            <Notification
+              variant={notificationVariant}
+              message={notification}
+            />
+          )}
+        </LoginProvider>
       </BrowserRouter>
     </>
   );

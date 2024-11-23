@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 
-const Button = ({ children, onClick, to, color, size, disabled = false }) => {
+const Button = ({ children, onClick, to, color, size, className, disabled = false }) => {
   if (to) {
     return (
       <Link
@@ -26,8 +26,9 @@ const Button = ({ children, onClick, to, color, size, disabled = false }) => {
 
   return (
     <button
+      onClick={onClick}
       className={clsx(
-        "text-main-text-color shadow-navigation-button-shadow px-6 py-2 font-semibold rounded border-0 shadow-sm",
+        `${ className } text-main-text-color shadow-navigation-button-shadow px-6 py-2 font-semibold rounded border-0 shadow-sm`,
         color === "menu" &&
           "bg-menu-button-gradient hover:bg-hover-menu-button-gradient",
         color === "login" &&
@@ -36,7 +37,7 @@ const Button = ({ children, onClick, to, color, size, disabled = false }) => {
           "bg-logout-button-gradient hover:bg-hover-logout-button-gradient",
         size === "small" && "text-sm",
         size === "medium" && "text-xl",
-        size === "large" && "text-2xl"
+        size === "large" && "text-2xl",
       )}
     >
       {children}

@@ -24,14 +24,24 @@ const PokemonList = () => {
     }
   }, [search, data]);
 
-  if (loading) return <p className="w-full text-center">Loading...</p>;
-  if (error) return <p className="w-full text-center">Error: {error}</p>;
+  if (loading)
+    return (
+      <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        Trwa pobieranie danych...
+      </p>
+    );
+  if (error)
+    return (
+      <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        {error}
+      </p>
+    );
 
   return (
     <>
       <PokemonSearching search={search} setSearch={setSearch} />
       <div className="flex flex-col items-center">
-        <div className="flex w-4/5 flex-wrap justify-center gap-y-5 gap-x-12 mt-4">
+        <div className="flex w-4/5 flex-wrap justify-center gap-y-10 gap-x-12 mt-4">
           {filteredData.length === 0 ? (
             <p>Nie znaleziono pasujących odpowiedzi</p>
           ) : (
@@ -64,3 +74,8 @@ const PokemonList = () => {
 };
 
 export default PokemonList;
+
+
+
+
+

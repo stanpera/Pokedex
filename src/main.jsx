@@ -1,16 +1,18 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { LoginProvider } from "./context/LoginContext.jsx";
 import { NotificationProvider } from "./context/NotificationContext.jsx";
+import { ThemeProvider } from "./context/ThemeContext.jsx";
 import "./index.css";
 import App from "./App.jsx";
-
+import AppWrapper from "./components/AppWrapper.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <NotificationProvider>
-      <LoginProvider>
+    <ThemeProvider>
+      <AppWrapper>
+      <NotificationProvider>
         <App />
-      </LoginProvider>
-    </NotificationProvider>
+      </NotificationProvider>
+      </AppWrapper>
+    </ThemeProvider>
   </StrictMode>
 );

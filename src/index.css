@@ -24,5 +24,5 @@ body {
   width: 100%;
   min-height: 100vh;
   max-width: 1920px;
-  background: var(--backgroundColor);
+  /* background: var(--backgroundColor); */
 }

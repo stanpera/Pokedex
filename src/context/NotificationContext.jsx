@@ -9,7 +9,7 @@ export const NotificationProvider = ({ children }) => {
   const handleNotification = (e, variant = 'primary') => {
     setNotificationVariant(variant)
     setNotification(e)
-    setTimeout(() => setNotification(null), 2000)
+    setTimeout(() => setNotification(null), 3000)
   }
 
   return (

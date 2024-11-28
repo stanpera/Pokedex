@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css"; // Upewnij się, że Font Awesome jest załadowany
 import clsx from "clsx";
+import { useContext } from "react";
+import { ThemeContext } from "../../../context/ThemeContext";
 
-const LoginInput = ({ value, onChange, placeholder, error }) => {
+const RegistrationInput = ({ register, name, placeholder, error }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-
+  const {theme} = useContext(ThemeContext)
+  
   const togglePasswordVisibility = () => {
     setPasswordVisible((prevState) => !prevState);
   };
@@ -13,22 +16,22 @@ const LoginInput = ({ value, onChange, placeholder, error }) => {
     <>
       <div className="flex text-center justify-center items-center">
         <input
+          {...register(name)}
           type={
-            placeholder === "Wpisz hasło"
+            name === "password" || name === "confirmPassword"
               ? passwordVisible
                 ? "text"
                 : "password"
               : "text"
           }
           placeholder={placeholder}
-          value={value}
-          onChange={onChange}
           className={clsx(
-            "w-full text-center mr-3 py-1 text-green bg-formInput rounded-md text-lg",
-            error ? "border-solid border-errorText bg-red-800" : "border-none"
+            "w-full text-center mr-3 py-1 text-green rounded-md text-lg",
+            error ? "border-solid border-errorText bg-red-800" : "border-none",
+            theme === "light" ? "bg-form-input" : "bg-dark-form-input text-dark-black"
           )}
         />
-        {placeholder === "Wpisz hasło" && (
+        {(name === "password" || name === "confirmPassword") && (
           <span
             onClick={togglePasswordVisibility}
             className="cursor-pointer text-#555"
@@ -42,8 +45,9 @@ const LoginInput = ({ value, onChange, placeholder, error }) => {
           </span>
         )}
       </div>
+      {error && <p className="text-errorText text-sm">{error.message}</p>}
     </>
   );
 };
 
-export default LoginInput;
+export default RegistrationInput;

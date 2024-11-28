@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../../context/ThemeContext";
 import clsx from "clsx";
-
+import { useNavigate } from "react-router-dom";
 const PokemonCard = ({
+  id,
   name,
   image,
   height,
@@ -11,11 +12,16 @@ const PokemonCard = ({
   ability,
 }) => {
   const { theme } = useContext(ThemeContext);
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/pokemon/${name}`);
+  };
 
   return (
-    <div
+    <div onClick={handleCardClick}
       className={clsx(
-        "flex flex-col items-center shadow-md py-10 rounded-lg w-[360px] hover:scale-105 hover:shadow-lg transform transition-all duration-200 ease-in-out",
+        "flex flex-col items-center shadow-md py-10 rounded-lg w-[360px] hover:scale-105 hover:shadow-lg transform transition-all duration-200 ease-in-out cursor-pointer",
         theme === "light"
           ? "bg-pokemon-card shadow-pokemon-card-shadow"
           : "bg-dark-pokemon-card shadow-dark-pokemon-card-shadow"
@@ -41,7 +47,7 @@ const PokemonCard = ({
               "text-xl text-center font-itim mb-2",
               theme === "light"
                 ? "text-pokemon-card-details"
-                : "text-dark-pokemon-card-details"
+                : "text-dark-second-text-color"
             )}
           >
             {height}
@@ -61,7 +67,7 @@ const PokemonCard = ({
               "text-xl text-center font-itim",
               theme === "light"
                 ? "text-pokemon-card-details"
-                : "text-dark-pokemon-card-details"
+                : "text-dark-second-text-color"
             )}
           >
             {weight}
@@ -83,7 +89,7 @@ const PokemonCard = ({
               "text-xl text-center font-itim mb-2",
               theme === "light"
                 ? "text-pokemon-card-details"
-                : "text-dark-pokemon-card-details"
+                : "text-dark-second-text-color"
             )}
           >
             {baseExperience}
@@ -103,7 +109,7 @@ const PokemonCard = ({
               "text-xl text-center font-itim",
               theme === "light"
                 ? "text-pokemon-card-details"
-                : "text-dark-pokemon-card-details"
+                : "text-dark-second-text-color"
             )}
           >
             {ability}
@@ -125,3 +131,4 @@ const PokemonCard = ({
 };
 
 export default PokemonCard;
+

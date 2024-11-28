@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        "backgroundLight": "#B9DEFF",
-        "backgroundDark": "#313131",
+        backgroundLight: "#B9DEFF",
+        backgroundDark: "#313131",
         "main-text-color": "#272B5A",
         "dark-main-text-color": "#E8D8B7",
         "navigation-button-shadow": "#15a2c2d0",
@@ -15,32 +15,53 @@ export default {
         "pokemon-card-shadow": "#a2a4a7",
         "dark-pokemon-card-shadow": "#222222",
         "pokemon-card-details": "#6a788c",
-        "dark-pokemon-card-details": "#d5b77b",
-        "errorText": "#e21313",
-        "switcherColor": "#D1D5DB",
-        "switcherShadow": "#a8acb1",
+        "dark-second-text-color": "#d5b77b",
+        errorText: "#e21313",
+        switcherColor: "#D1D5DB",
+        switcherShadow: "#a8acb1",
         "dark-red": "#891616",
         "dark-red-shadow": "#771414",
-        "dark-black": "#222222"
+        "dark-black": "#222222",
+        "main-gray": "#cccccc",
+        "main-red": "#FF0000",
       },
       backgroundImage: {
         "menu-button-gradient": "linear-gradient(to right, #DDAF00, #F5C542)",
+        "dark-button-gradient": "linear-gradient(to right, #313131, #474747)",
         "hover-menu-button-gradient":
           "linear-gradient(to right, #af8b00, #e4aa0c)",
+        "hover-dark-button-gradient":
+          "linear-gradient(to right, #212121, #313131)",
         "login-button-gradient": "linear-gradient(to right, #00a300, #00d700)",
         "hover-login-button-gradient":
           "linear-gradient(to right, #008600, #00a700)",
+        "dark-login-button-gradient":
+          "linear-gradient(to right, #004700, #006100)",
+        "hover-dark-login-button-gradient":
+          "linear-gradient(to right, #003300, #004700)",
         "logout-button-gradient": "linear-gradient(to right, #dd2f2f, #e45555)",
         "hover-logout-button-gradient":
           "linear-gradient(to right, #961919, #c32020)",
         "navigation-gradient": "linear-gradient(to right, #33c6e9, #67d5ee)",
-        "dark-navigation-gradient": "linear-gradient(to right, #1c1c1c, #222222)",
+        "dark-navigation-gradient":
+          "linear-gradient(to right, #1c1c1c, #222222)",
         "searching-pokemon-input":
           "linear-gradient(to right, #e35353, #e66565)",
+        "dark-searching-pokemon-input":
+          "linear-gradient(to right, #9c1919, #b11c1c)",
         "pokemon-card": "linear-gradient(to right, #ccd0d7, #e8eaed)",
         "dark-pokemon-card": "linear-gradient(to right, #484848, #636363)",
         error: "linear-gradient(to right, #e21313, #f04b4b)",
-        formInput: "linear-gradient(to right, #FFF3E8, #FFF9F4)",
+        "form-input": "linear-gradient(to right, #FFF3E8, #FFF9F4)",
+        "dark-form-input": "linear-gradient(to right, #E8D8B7, #f1e7d2)",
+        "dark-red-gradient": "linear-gradient(to right, #771414, #8f1818)",
+        "hover-dark-red-gradient":
+          "linear-gradient(to right, #601010, #771414)",
+        "notification-green": "linear-gradient(to right, #00b700, #00dc00)",
+        "notification-dark-green":
+          "linear-gradient(to right, #004700, #006100)",
+        "notification-red": "linear-gradient(to right, #dd2f2f, #e14545)",
+        "notification-dark-red": "linear-gradient(to right, #771414, #8f1818)",
       },
       fontFamily: {
         bangers: ["Bangers", "system-ui"],

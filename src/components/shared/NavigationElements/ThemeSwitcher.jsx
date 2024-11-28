@@ -1,6 +1,7 @@
-import { useContext, useState } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { useContext } from "react";
+import { ThemeContext } from "../../../context/ThemeContext";
 import clsx from "clsx";
+
 const ThemeSwitcher = () => {
   const { theme, setTheme } = useContext(ThemeContext);
 
@@ -9,14 +10,14 @@ const ThemeSwitcher = () => {
   };
 
   return (
-    <div className="flex justify-end items-center space-x-2 pb-2">
+    <div className="flex justify-end items-center space-x-2 ml-2 pb-2">
       <div
         onClick={toggleTheme}
         className={clsx(
-          "relative inline-flex items-center justify-center w-10 h-5 rounded-full transition-colors border-0 focus:ring-0 shadow-sm",
+          "relative inline-flex items-center justify-center w-10 h-5 rounded-full transition-colors border-0 focus:ring-0 shadow-sm cursor-pointer",
           theme === "light"
             ? "bg-switcherColor shadow-switcherShadow"
-            : "bg-dark-pokemon-card-details shadow-dark-red-shadow"
+            : "bg-dark-second-text-color shadow-dark-red-shadow"
         )}
       >
         <span

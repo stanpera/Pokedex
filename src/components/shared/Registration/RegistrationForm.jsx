@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import RegistrationInput from "./registrationInput";
-import Button from "./Button";
-import { NotificationContext } from "../../context/NotificationContext";
+import RegistrationInput from "./RegistrationInput";
+import Button from "../Button";
+import { NotificationContext } from "../../../context/NotificationContext";
 import { useNavigate } from "react-router-dom";
 
 const schema = z

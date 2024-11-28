@@ -8,21 +8,21 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --backgroundColor: #B9DEFF;
-  --textColor: #272B5A
+  --backgroundColor: #b9deff;
+  --textColor: #272b5a;
+  user-select: none;
 }
 
-body {
+/* body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: var(--textColor);
-  
-}
-#root {
+} */
+/* #root {
   width: 100%;
   min-height: 100vh;
   max-width: 1920px;
-  /* background: var(--backgroundColor); */
-}
+  background: var(--backgroundColor);
+} */

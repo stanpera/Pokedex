@@ -7,7 +7,6 @@ const useLogin = () => {
     const storedName = localStorage.getItem("userName");
     return storedName ? JSON.parse(storedName) : ""; 
   });
-
   const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const storedValue = localStorage.getItem("userIsLoggedIn");

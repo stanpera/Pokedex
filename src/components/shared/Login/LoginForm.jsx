@@ -1,6 +1,6 @@
-import Button from "./Button";
+import Button from "../Button";
 import { useContext } from "react";
-import { LoginContext } from "../../context/LoginContext";
+import { LoginContext } from "../../../context/LoginContext";
 import LoginInput from "./LoginInput";
 
 const LoginForm = () => {

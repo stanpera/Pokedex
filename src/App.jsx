@@ -1,16 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { NotificationContext } from "./context/NotificationContext";
-import Navigation from "./components/subpages/Navigation";
+import Navigation from "./components/subpages/Navigation.jsx";
 import HomePage from "./components/subpages/HomePage";
 import Arena from "./components/subpages/Arena";
 import Favourites from "./components/subpages/Favourites";
 import Ranking from "./components/subpages/Ranking";
 import Edition from "./components/subpages/Edition";
-import RegistrationForm from "./components/shared/RegistrationForm";
-import LoginForm from "./components/shared/LoginForm";
+import RegistrationForm from "./components/shared/Registration/RegistrationForm.jsx";
+import LoginForm from "./components/shared/Login/LoginForm.jsx";
 import Notification from "./components/shared/Notification";
 import { useContext } from "react";
 import { LoginProvider } from "./context/LoginContext.jsx";
+import PokemonDetailsPage from "./components/shared/PokemonDetails/PokemonDetailsPage.jsx";
 
 function App() {
   const { notification, notificationVariant } = useContext(NotificationContext);
@@ -27,6 +28,7 @@ function App() {
             <Route path="edition" element={<Edition />} />
             <Route path="registrationForm" element={<RegistrationForm />} />
             <Route path="loginForm" element={<LoginForm />} />
+            <Route path="pokemon/:name" element={<PokemonDetailsPage />} />
           </Routes>
           {notification && (
             <Notification

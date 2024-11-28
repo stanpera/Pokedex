@@ -4,8 +4,8 @@ import { LoginContext } from "../../context/LoginContext";
 import { NotificationContext } from "../../context/NotificationContext";
 import logoPokedex from "../../icons/logoPokedex.png";
 import Button from "../shared/Button";
-import ThemeSwitcher from "../shared/ThemeSwitcher";
-import UserLogo from "../shared/UserLogo";
+import ThemeSwitcher from "../shared/NavigationElements/ThemeSwitcher";
+import UserLogo from "../shared/NavigationElements/UserLogo";
 import { ThemeContext } from "../../context/ThemeContext";
 import clsx from "clsx";
 

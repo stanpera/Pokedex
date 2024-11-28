@@ -12,12 +12,19 @@ const PokemonSearching = ({ search, setSearch }) => {
   return (
     <div
       className={clsx(
-        "flex justify-center py-2 mb-3 shadow-md rounded-md",
-        theme === "light" ? "bg-searching-pokemon shadow-searching-pokemon-shadow" : "bg-dark-red shadow-dark-red-shadow"
+        "flex justify-center py-2 mb-3 shadow-md rounded-md ",
+        theme === "light"
+          ? "bg-searching-pokemon shadow-searching-pokemon-shadow"
+          : "bg-dark-red shadow-dark-red-shadow"
       )}
     >
       <input
-        className="rounded p-1 h-10 w-72 bg-searching-pokemon-input placeholder:text-white placeholder:text-lg text-center text-xl"
+        className={clsx(
+          "rounded p-1 h-10 w-72 placeholder:text-lg text-center text-xl",
+          theme === "light"
+            ? "bg-searching-pokemon-input placeholder:text-white"
+            : "bg-dark-searching-pokemon-input text-dark-main-text-color placeholder:text-dark-second-text-color"
+        )}
         type="text"
         value={search}
         onChange={handleInputChange}

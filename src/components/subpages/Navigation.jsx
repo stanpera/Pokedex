@@ -1,28 +1,27 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../context/LoginContext";
-import { NotificationContext } from "../../context/NotificationContext";
 import logoPokedex from "../../icons/logoPokedex.png";
 import Button from "../shared/Button";
 import ThemeSwitcher from "../shared/NavigationElements/ThemeSwitcher";
 import UserLogo from "../shared/NavigationElements/UserLogo";
 import { ThemeContext } from "../../context/ThemeContext";
+import { useSnackbar } from "notistack";
 import clsx from "clsx";
 
 const Navigation = () => {
   const { isLoggedIn, handleSubmit, name } = useContext(LoginContext);
-  const { handleNotification } = useContext(NotificationContext);
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleButtonClick = (path) => {
     if (isLoggedIn) {
       navigate(path);
     } else {
-      handleNotification(
-        "Musisz być zalogowany, aby zobaczyć tę stronę.",
-        "secondary"
-      );
+      enqueueSnackbar("Musisz być zalogowany, aby zobaczyć tę stronę.", {
+        variant: "info",
+      });
     }
   };
 

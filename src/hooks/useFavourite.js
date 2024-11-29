@@ -1,9 +1,9 @@
-import { useContext, useState, useEffect } from "react";
-import { NotificationContext } from "../context/NotificationContext";
+import { useState, useEffect } from "react";
+import { useSnackbar } from "notistack";
 
 const useFavourite = (name) => {
-  const { handleNotification } = useContext(NotificationContext);
   const [isFavorite, setIsFavorite] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     const checkIfFavorite = async () => {
@@ -14,9 +14,11 @@ const useFavourite = (name) => {
         const data = await response.json();
         setIsFavorite(data.length > 0);
       } catch {
-        handleNotification(
+        enqueueSnackbar(
           "Uwaga! Mogą wystąpić problemy z aktualnością wyświetlanych danych. Pracujemy nad rozwiązaniem problemu.",
-          "secondary"
+          {
+            variant: "warrning",
+          }
         );
       }
     };
@@ -37,10 +39,13 @@ const useFavourite = (name) => {
             method: "DELETE",
           });
           setIsFavorite(false);
-          handleNotification(
+          enqueueSnackbar(
             `Usunięto ${name.charAt(0).toUpperCase()}${name.slice(
               1
-            )} z ulubionych.`
+            )} z ulubionych.`,
+            {
+              variant: "success",
+            }
           );
         }
       } else {
@@ -50,16 +55,21 @@ const useFavourite = (name) => {
           body: JSON.stringify(data),
         });
         setIsFavorite(true);
-        handleNotification(
+        enqueueSnackbar(
           `Dodano ${name.charAt(0).toUpperCase()}${name.slice(
             1
-          )} do ulubionych.`
+          )} do ulubionych.`,
+          {
+            variant: "success",
+          }
         );
       }
     } catch (error) {
-      handleNotification(
+      enqueueSnackbar(
         "Aktualnie nie można dodawać pokemonów do ulubionych. Spróbuj ponownie później.",
-        "secondary"
+        {
+          variant: "error",
+        }
       );
     }
   };

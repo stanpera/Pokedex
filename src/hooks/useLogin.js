@@ -1,54 +1,70 @@
-import { useEffect, useState, useContext } from "react";
-import { NotificationContext } from "../context/NotificationContext";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 const useLogin = () => {
   const [name, setName] = useState(() => {
     const storedName = localStorage.getItem("userName");
-    return storedName ? JSON.parse(storedName) : ""; 
+    return storedName ? JSON.parse(storedName) : "";
   });
   const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const storedValue = localStorage.getItem("userIsLoggedIn");
     return storedValue ? JSON.parse(storedValue) : false;
   });
-
-  const { handleNotification } = useContext(NotificationContext);
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem("userIsLoggedIn", JSON.stringify(isLoggedIn));
     if (isLoggedIn) {
-      localStorage.setItem("userName", JSON.stringify(name)); 
+      localStorage.setItem("userName", JSON.stringify(name));
     } else {
-      localStorage.removeItem("userName"); 
+      localStorage.removeItem("userName");
     }
   }, [isLoggedIn, name]);
 
-  const handleSubmit = async (e) => {
-    if (!isLoggedIn) {
-      e.preventDefault();
-      const url = `http://localhost:3000/users?name=${name}&password=${password}`;
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        if (data && name && password) {
-          setIsLoggedIn(true);
-          handleNotification("Logowanie powiodło się!");
-          setTimeout(() => navigate("/"), 2000);
-        } else {
-          handleNotification("Nieprawidłowe dane logowania.", "secondary");
-          setIsLoggedIn(false);
-        }
-      } catch (error) {
-        handleNotification("Wystąpił błąd podczas logowania.", "secondary");
+  const handleLogin = async () => {
+    const url = `http://localhost:3000/users?name=${encodeURIComponent(
+      name
+    )}&password=${encodeURIComponent(password)}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (data.length > 0) {
+        setIsLoggedIn(true);
+        enqueueSnackbar("Logowanie powiodło się!", { variant: "success" });
+        navigate("/");
+      } else {
+        enqueueSnackbar("Nieprawidłowe dane logowania.", { variant: "error" });
+        setName("");
+        setPassword("");
         setIsLoggedIn(false);
       }
-    } else {
-      setIsLoggedIn(false);
-      setPassword("");
+    } catch (error) {
+      console.error("Błąd podczas logowania:", error);
+      enqueueSnackbar("Wystąpił błąd podczas logowania.", { variant: "error" });
       setName("");
-      handleNotification("Zostałeś pomyślnie wylogowany.");
+      setPassword("");
+      setIsLoggedIn(false);
+    }
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setName("");
+    setPassword("");
+    enqueueSnackbar("Zostałeś pomyślnie wylogowany.", { variant: "success" });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (isLoggedIn) {
+      handleLogout();
+    } else {
+      await handleLogin();
     }
   };
 

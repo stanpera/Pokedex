@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import RegistrationInput from "./RegistrationInput";
 import Button from "../Button";
-import { NotificationContext } from "../../../context/NotificationContext";
+import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
 
 const schema = z
@@ -30,7 +29,7 @@ const schema = z
   });
 
 const RegistrationForm = () => {
-  const { handleNotification } = useContext(NotificationContext);
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
   const {
@@ -44,17 +43,15 @@ const RegistrationForm = () => {
   const onSubmit = async (data) => {
     try {
       const checkResponse = await fetch(
-        `http://localhost:3000/users?email=${data.email}&name=${data.name}&password=${data.password}`
+        `http://localhost:3000/users?email=${encodeURIComponent(data.email)}`
       );
       const existingUsers = await checkResponse.json();
       if (existingUsers.length > 0) {
-        handleNotification(
-          "Użytkownik o podanym adresie e-mail już istnieje!",
-          "secondary"
-        );
+        enqueueSnackbar("Użytkownik o podanym adresie e-mail już istnieje!", {
+          variant: "warning",
+        });
         return;
       }
-
       await fetch("http://localhost:3000/users", {
         method: "POST",
         headers: {
@@ -66,12 +63,17 @@ const RegistrationForm = () => {
           password: data.password,
         }),
       });
-      handleNotification("Zostałeś pomyślnie zarejestrowany!");
-      setTimeout(() => navigate("/loginForm"), 2000);
+      console.log(existingUsers);
+      enqueueSnackbar("Zostałeś pomyślnie zarejestrowany!", {
+        variant: "success",
+      });
+      navigate("/loginForm");
     } catch (error) {
-      handleNotification(
+      enqueueSnackbar(
         "Aktualnie nie ma możliwości rejestracji nowych użytkowników. Spróbuj ponownie później.",
-        "secondary"
+        {
+          variant: "error",
+        }
       );
     }
   };

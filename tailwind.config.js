@@ -22,8 +22,9 @@ export default {
         "dark-red": "#891616",
         "dark-red-shadow": "#771414",
         "dark-black": "#222222",
-        "main-gray": "#cccccc",
+        "main-gray": "#bbbbbb",
         "main-red": "#FF0000",
+        "fight-main-color": "#DDAF00",
       },
       backgroundImage: {
         "menu-button-gradient": "linear-gradient(to right, #DDAF00, #F5C542)",
@@ -72,6 +73,17 @@ export default {
       },
       screens: {
         "max-sm": { max: "639px" }, // Upewnij się, że breakpoint lg jest poprawnie ustawiony
+      },
+      animation: {
+        shake: "shake 0.5s ease-in-out infinite", // Własna nazwa animacji
+      },
+      keyframes: {
+        shake: {
+          "0%, 100%": { transform: "translateX(0)" },
+          "25%": { transform: "translateX(-5px)" },
+          "50%": { transform: "translateX(5px)" },
+          "75%": { transform: "translateX(-5px)" },
+        },
       },
     },
   },

@@ -22,6 +22,7 @@ const PokemonDetailsPage = () => {
     );
 
   return (
+    <div className="flex justify-center">
     <PokemonDetailsCard
       id={data.name}
       name={data.name}
@@ -31,6 +32,7 @@ const PokemonDetailsPage = () => {
       experience={data.base_experience}
       ability={data.abilities?.[0]?.ability?.name}
     />
+    </div>
   );
 };
 

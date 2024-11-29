@@ -7,76 +7,13 @@
       "password": "Ss1#dsadsas"
     },
     {
-      "id": "9274",
-      "name": "adssadsda",
-      "email": "stanislawpera94@gmail.com",
-      "password": "Ssads1#dsadsas"
-    },
-    {
-      "id": "2251",
-      "name": "Stanisław",
-      "email": "stanislawpera94@gmail.com",
-      "password": "#dasasA12"
-    },
-    {
-      "id": "bd59",
-      "name": "Stanisław",
-      "email": "stanislawpera94@gmail.com",
-      "password": "#dasasA12"
-    },
-    {
-      "id": "27fd",
-      "name": "Stanisław",
-      "email": "stanislawpera94@gmail.com",
-      "password": "#dasasA12"
-    },
-    {
-      "id": "e3b6",
-      "name": "Stanisław",
-      "email": "stanislawpera94@gmail.com",
-      "password": "#dasasA12"
-    },
-    {
-      "id": "0e00",
-      "name": "Stanisław",
-      "email": "sadasd@ds.bf",
-      "password": "RSAdsa@111222"
-    },
-    {
-      "id": "ee3d",
-      "name": "Stanisław",
-      "email": "dassad@sda.pl",
-      "password": "dassad#21SDAsd"
-    },
-    {
-      "id": "fa07",
-      "name": "Stanisław",
-      "email": "dassad@hgf.pl",
-      "password": "dsasad@dsdAS1"
-    },
-    {
-      "id": "9aec",
-      "name": "dsaasd",
-      "email": "asdsda@uiyu.pl",
-      "password": "Asdd@345hfd"
-    },
-    {
-      "id": "16b0",
-      "name": "Stanisław",
-      "email": "sdffsddfs@gs.pl",
-      "password": "SFgd2@34"
+      "id": "72fc",
+      "name": "aaa",
+      "email": "stanislara94@gmail.com",
+      "password": "as!1SDsdadsada"
     }
   ],
   "favouritePokemons": [
-    {
-      "id": "venusaur",
-      "name": "venusaur",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
-      "height": 20,
-      "weight": 1000,
-      "baseExperience": 263,
-      "ability": "overgrow"
-    },
     {
       "id": "charmander",
       "name": "charmander",
@@ -186,15 +123,6 @@
       "ability": "intimidate"
     },
     {
-      "id": "bulbasaur",
-      "name": "bulbasaur",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-      "height": 7,
-      "weight": 69,
-      "baseExperience": 64,
-      "ability": "overgrow"
-    },
-    {
       "id": "weedle",
       "name": "weedle",
       "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/13.png",
@@ -202,15 +130,6 @@
       "weight": 32,
       "baseExperience": 39,
       "ability": "shield-dust"
-    },
-    {
-      "id": "beedrill",
-      "name": "beedrill",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/15.png",
-      "height": 10,
-      "weight": 295,
-      "baseExperience": 178,
-      "ability": "swarm"
     },
     {
       "id": "ivysaur",
@@ -238,7 +157,35 @@
       "weight": 90,
       "baseExperience": 63,
       "ability": "torrent"
+    },
+    {
+      "id": "beedrill",
+      "name": "beedrill",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/15.png",
+      "height": 10,
+      "weight": 295,
+      "baseExperience": 178,
+      "ability": "swarm"
     }
   ],
-  "arena": []
+  "arena": [
+    {
+      "id": "bulbasaur",
+      "name": "bulbasaur",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+      "height": 7,
+      "weight": 69,
+      "baseExperience": 64,
+      "ability": "overgrow"
+    },
+    {
+      "id": "ivysaur",
+      "name": "ivysaur",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png",
+      "height": 10,
+      "weight": 130,
+      "baseExperience": 142,
+      "ability": "overgrow"
+    }
+  ]
 }

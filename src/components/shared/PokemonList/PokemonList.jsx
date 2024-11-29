@@ -68,9 +68,7 @@ const PokemonList = ({ url }) => {
 
   return (
     <>
-      {filteredData.length > 0 && (
-        <PokemonSearching search={search} setSearch={setSearch} />
-      )}
+      <PokemonSearching search={search} setSearch={setSearch} />
       <div className="relative flex flex-col items-center mt-10">
         <div className="flex w-4/5 flex-wrap justify-center gap-y-10 gap-x-12 mb-10">
           {filteredData.length === 0 &&
@@ -84,6 +82,12 @@ const PokemonList = ({ url }) => {
             <Notification
               variant="primary"
               message=" Przejdź do strony głównej i dodaj pokemony do areny"
+            />
+          ) : filteredData.length === 0 &&
+            url === "https://pokeapi.co/api/v2/pokemon" ? (
+            <Notification
+              variant="secondary"
+              message=" Nie znaleziono pokemona pasującego do wyszukiwanego hasła"
             />
           ) : (
             filteredData.map((pokemon) => (

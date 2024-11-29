@@ -1,9 +1,9 @@
-import { useContext, useState, useEffect } from "react";
-import { NotificationContext } from "../context/NotificationContext";
+import { useState, useEffect } from "react";
+import { useSnackbar } from "notistack";
 
 const useArena = (name) => {
-  const { handleNotification } = useContext(NotificationContext);
   const [isArena, setIsArena] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     const checkIfAren = async () => {
@@ -14,9 +14,11 @@ const useArena = (name) => {
         const data = await response.json();
         setIsArena(data.length > 0);
       } catch {
-        handleNotification(
+        enqueueSnackbar(
           "Uwaga! Mogą wystąpić problemy z aktualnością wyświetlanych danych. Pracujemy nad rozwiązaniem problemu.",
-          "secondary"
+          {
+            variant: "warrning",
+          }
         );
       }
     };
@@ -36,9 +38,8 @@ const useArena = (name) => {
             method: "DELETE",
           });
           setIsArena(false);
-          handleNotification(
-            `Usunięto ${name.charAt(0).toUpperCase()}${name.slice(1)} z areny.`
-          );
+          enqueueSnackbar(`Usunięto ${name} z areny.`, { variant: "success" });
+          return
         }
       } else {
         if (arenaData.length < 2) {
@@ -48,21 +49,23 @@ const useArena = (name) => {
             body: JSON.stringify(data),
           });
           setIsArena(true);
-          handleNotification(
-            `Dodano ${name.charAt(0).toUpperCase()}${name.slice(1)} do areny.`
-          );
+          enqueueSnackbar(`Dodano ${name} do areny.`, { variant: "success" });
+          return 
         } else {
-          handleNotification(
+          enqueueSnackbar(
             `W arenie mogą znajdować się maksymalnie 2 pokemony.`,
-            "secondary"
+            {
+              variant: "error",
+            }
           );
+          return 
         }
       }
     } catch (error) {
-      handleNotification(
-        "Aktualnie nie można dodawać pokemonów do areny. Spróbuj ponownie później.",
-        "secondary"
-      );
+      enqueueSnackbar("Wystąpił problem. Spróbuj ponownie.", {
+        variant: "error",
+      });
+      return 
     }
   };
 

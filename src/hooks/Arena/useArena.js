@@ -39,7 +39,7 @@ const useArena = (name) => {
           });
           setIsArena(false);
           enqueueSnackbar(`Usunięto ${name} z areny.`, { variant: "success" });
-          return
+          return;
         }
       } else {
         if (arenaData.length < 2) {
@@ -50,7 +50,7 @@ const useArena = (name) => {
           });
           setIsArena(true);
           enqueueSnackbar(`Dodano ${name} do areny.`, { variant: "success" });
-          return 
+          return;
         } else {
           enqueueSnackbar(
             `W arenie mogą znajdować się maksymalnie 2 pokemony.`,
@@ -58,18 +58,37 @@ const useArena = (name) => {
               variant: "error",
             }
           );
-          return 
+          return;
         }
       }
     } catch (error) {
       enqueueSnackbar("Wystąpił problem. Spróbuj ponownie.", {
         variant: "error",
       });
-      return 
+      return;
     }
   };
 
-  return { isArena, toggleArena };
+  const deleteAllFromArena = async (pokemonId) => {
+    try {
+      const response = await fetch(`http://localhost:3000/arena/${pokemonId}`, {
+        method: "DELETE",
+      });
+      setIsArena(false);
+      enqueueSnackbar("Arena została wyczyszczona.", {
+        variant: "success",
+      });
+    } catch (error) {
+      enqueueSnackbar(
+        "Problem z oczyszczeniem areny. Spróbuj ponownie później.",
+        {
+          variant: "error",
+        }
+      );
+    }
+  };
+
+  return { isArena, toggleArena, deleteAllFromArena };
 };
 
 export default useArena;

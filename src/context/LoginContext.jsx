@@ -9,11 +9,12 @@ export const LoginProvider = ({ children }) => {
     setName,
     setPassword,
     setIsLoggedIn,
+    setError,
     name,
     password,
     isLoggedIn,
+    error
   } = useLogin(); 
-
   return (
     <LoginContext.Provider
       value={{
@@ -21,15 +22,16 @@ export const LoginProvider = ({ children }) => {
         setName,
         setPassword,
         setIsLoggedIn,
+        setError,
         name,
         password,
         isLoggedIn,
+        error
       }}
     >
       {children}
     </LoginContext.Provider>
   );
 };
-
 
 

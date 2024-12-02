@@ -23,15 +23,19 @@ const PokemonDetailsPage = () => {
 
   return (
     <div className="flex justify-center">
-    <PokemonDetailsCard
-      id={data.name}
-      name={data.name}
-      image={data.sprites?.other["official-artwork"].front_default}
-      height={data.height}
-      weight={data.weight}
-      experience={data.base_experience}
-      ability={data.abilities?.[0]?.ability?.name}
-    />
+      <PokemonDetailsCard
+        id={data.name}
+        name={data.name}
+        image={
+          data.sprites?.other["official-artwork"].front_default || data.image
+        }
+        height={data.height}
+        weight={data.weight}
+        experience={data.base_experience || data.baseExperience}
+        ability={data.abilities?.[0]?.ability?.name || data.ability}
+        win={data.win}
+        lost={data.lost}
+      />
     </div>
   );
 };

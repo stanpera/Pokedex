@@ -1,5 +1,9 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { LoginContext } from "../context/LoginContext";
+
 const useFetchPokemonList = (url) => {
+  const { isLoggedIn } = useContext(LoginContext);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,6 +19,11 @@ const useFetchPokemonList = (url) => {
         }
         const result = await response.json();
 
+        const afterFightResponse = await fetch(
+          `http://localhost:3000/pokemonAfterFight`
+        );
+        const afterFightResult = await afterFightResponse.json();
+
         if (result.results) {
           const pokemonDetailsPromises = result.results.map(async (pokemon) => {
             const res = await fetch(pokemon.url);
@@ -24,9 +33,33 @@ const useFetchPokemonList = (url) => {
           });
 
           const pokemonDetails = await Promise.all(pokemonDetailsPromises);
-          setData(pokemonDetails.filter((details) => details !== null));
-        } else {
-          setData(result);
+
+          const updatedPokemons = pokemonDetails.map((pokemon) => {
+            const updatedPoke = afterFightResult.find(
+              (afterFightPoke) => afterFightPoke.name === pokemon.name
+            );
+            return updatedPoke || pokemon;
+          });
+          {
+            isLoggedIn ? setData(updatedPokemons) : setData(pokemonDetails);
+          }
+        } else if (!result.results && result.length > 0) {
+          const updatedPokemons = result.map((pokemon) => {
+            const updatedPoke = afterFightResult.find(
+              (afterFightPoke) => afterFightPoke.name === pokemon.name
+            );
+            return updatedPoke || pokemon;
+          });
+          {
+            isLoggedIn ? setData(updatedPokemons) : setData(result);
+          }
+        } else if (!Array.isArray(result) && result.name) {
+          const updatedPoke = afterFightResult.find(
+            (afterFightPoke) => afterFightPoke.name === result.name
+          );
+          {
+            isLoggedIn ? setData(updatedPoke || result) : setData(result);
+          }
         }
       } catch (err) {
         setError(err.message);
@@ -42,6 +75,3 @@ const useFetchPokemonList = (url) => {
 };
 
 export default useFetchPokemonList;
-
-
-

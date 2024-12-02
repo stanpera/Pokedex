@@ -27,7 +27,7 @@ const RegistrationInput = ({ register, name, placeholder, error }) => {
           placeholder={placeholder}
           className={clsx(
             "w-full text-center mr-3 py-1 text-green rounded-md text-lg",
-            error ? "border-solid border-errorText bg-red-800" : "border-none",
+            error ? "border-solid border-2 border-errorText" : "border-none",
             theme === "light" ? "bg-form-input" : "bg-dark-form-input text-dark-black"
           )}
         />
@@ -51,3 +51,5 @@ const RegistrationInput = ({ register, name, placeholder, error }) => {
 };
 
 export default RegistrationInput;
+
+

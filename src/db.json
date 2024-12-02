@@ -11,6 +11,12 @@
       "name": "aaa",
       "email": "stanislara94@gmail.com",
       "password": "as!1SDsdadsada"
+    },
+    {
+      "id": "5cd9",
+      "name": "sasd",
+      "email": "asd@gd.pl",
+      "password": "SDsa1$#sdasda"
     }
   ],
   "favouritePokemons": [
@@ -166,6 +172,15 @@
       "weight": 295,
       "baseExperience": 178,
       "ability": "swarm"
+    },
+    {
+      "id": "bulbasaur",
+      "name": "bulbasaur",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+      "height": 7,
+      "weight": 69,
+      "baseExperience": 64,
+      "ability": "overgrow"
     }
   ],
   "arena": [
@@ -176,7 +191,77 @@
       "height": 7,
       "weight": 69,
       "baseExperience": 64,
-      "ability": "overgrow"
+      "ability": "overgrow",
+      "win": 0,
+      "lost": 0
+    }
+  ],
+  "pokemonAfterFight": [
+    {
+      "id": "bulbasaur",
+      "name": "bulbasaur",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+      "height": 7,
+      "weight": 69,
+      "baseExperience": 64,
+      "ability": "overgrow",
+      "win": 0,
+      "lost": 5
+    },
+    {
+      "id": "charmander",
+      "name": "charmander",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+      "height": 6,
+      "weight": 85,
+      "baseExperience": 62,
+      "ability": "blaze",
+      "win": 0,
+      "lost": 1
+    },
+    {
+      "id": "venusaur",
+      "name": "venusaur",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
+      "height": 20,
+      "weight": 1000,
+      "baseExperience": 293,
+      "ability": "overgrow",
+      "win": 3,
+      "lost": 0
+    },
+    {
+      "id": "charizard",
+      "name": "charizard",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
+      "height": 17,
+      "weight": 905,
+      "baseExperience": 267,
+      "ability": "blaze",
+      "win": 0,
+      "lost": 1
+    },
+    {
+      "id": "wartortle",
+      "name": "wartortle",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/8.png",
+      "height": 10,
+      "weight": 225,
+      "baseExperience": 142,
+      "ability": "torrent",
+      "win": 0,
+      "lost": 1
+    },
+    {
+      "id": "charmeleon",
+      "name": "charmeleon",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png",
+      "height": 11,
+      "weight": 190,
+      "baseExperience": 142,
+      "ability": "blaze",
+      "win": 0,
+      "lost": 1
     },
     {
       "id": "ivysaur",
@@ -185,7 +270,53 @@
       "height": 10,
       "weight": 130,
       "baseExperience": 142,
-      "ability": "overgrow"
+      "ability": "overgrow",
+      "win": 0,
+      "lost": 1
+    },
+    {
+      "id": "butterfree",
+      "name": "butterfree",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/12.png",
+      "height": 11,
+      "weight": 320,
+      "baseExperience": 208,
+      "ability": "compound-eyes",
+      "win": 1,
+      "lost": 0
+    },
+    {
+      "id": "kakuna",
+      "name": "kakuna",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/14.png",
+      "height": 6,
+      "weight": 100,
+      "baseExperience": 72,
+      "ability": "shed-skin",
+      "win": 0,
+      "lost": 1
+    },
+    {
+      "id": "beedrill",
+      "name": "beedrill",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/15.png",
+      "height": 10,
+      "weight": 295,
+      "baseExperience": 188,
+      "ability": "swarm",
+      "win": 1,
+      "lost": 0
+    },
+    {
+      "id": "metapod",
+      "name": "metapod",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/11.png",
+      "height": 7,
+      "weight": 99,
+      "baseExperience": 82,
+      "ability": "shed-skin",
+      "win": 1,
+      "lost": 0
     }
   ]
 }

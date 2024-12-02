@@ -4,9 +4,8 @@ import { LoginContext } from "../../../context/LoginContext";
 import LoginInput from "./LoginInput";
 
 const LoginForm = () => {
-  const { handleSubmit, setName, setPassword, name, password, isLoggedIn } =
+  const { handleSubmit, setName, setPassword, name, password, isLoggedIn, error } =
     useContext(LoginContext);
-
   return (
     <>
       {!isLoggedIn && (
@@ -17,11 +16,13 @@ const LoginForm = () => {
               value={name}
               placeholder="Wpisz imię"
               onChange={(e) => setName(e.target.value)}
+              error={error}
             />
             <LoginInput
               value={password}
               placeholder="Wpisz hasło"
               onChange={(e) => setPassword(e.target.value)}
+              error={error}
             />
             <Button color="login" size="medium" type="submit" className="mr-3">
               ZALOGUJ SIĘ

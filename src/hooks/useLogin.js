@@ -12,6 +12,7 @@ const useLogin = () => {
     const storedValue = localStorage.getItem("userIsLoggedIn");
     return storedValue ? JSON.parse(storedValue) : false;
   });
+  const [error, setError] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
@@ -25,30 +26,43 @@ const useLogin = () => {
   }, [isLoggedIn, name]);
 
   const handleLogin = async () => {
-    const url = `http://localhost:3000/users?name=${encodeURIComponent(
-      name
-    )}&password=${encodeURIComponent(password)}`;
+    if (name.length > 0 && password.length > 0) {
+      setError(false);
+      const url = `http://localhost:3000/users?name=${encodeURIComponent(
+        name
+      )}&password=${encodeURIComponent(password)}`;
 
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
 
-      if (data.length > 0) {
-        setIsLoggedIn(true);
-        enqueueSnackbar("Logowanie powiodło się!", { variant: "success" });
-        navigate("/");
-      } else {
-        enqueueSnackbar("Nieprawidłowe dane logowania.", { variant: "error" });
+        if (data.length > 0) {
+          setIsLoggedIn(true);
+          enqueueSnackbar("Logowanie powiodło się!", { variant: "success" });
+          navigate("/");
+        } else {
+          setError(true);
+          enqueueSnackbar("Nieprawidłowe dane logowania.", {
+            variant: "error",
+          });
+          setName("");
+          setPassword("");
+          setIsLoggedIn(false);
+        }
+      } catch {
+        setError(true);
+        enqueueSnackbar("Wystąpił błąd podczas logowania.", {
+          variant: "error",
+        });
         setName("");
         setPassword("");
         setIsLoggedIn(false);
       }
-    } catch (error) {
-      console.error("Błąd podczas logowania:", error);
-      enqueueSnackbar("Wystąpił błąd podczas logowania.", { variant: "error" });
-      setName("");
-      setPassword("");
-      setIsLoggedIn(false);
+    } else {
+      enqueueSnackbar("Musisz uzupełnić wszystkie dane logowania.", {
+        variant: "error",
+      });
+      setError(true);
     }
   };
 
@@ -57,6 +71,11 @@ const useLogin = () => {
     setName("");
     setPassword("");
     enqueueSnackbar("Zostałeś pomyślnie wylogowany.", { variant: "success" });
+    if (location.pathname === "/") {
+      window.location.href = window.location.href;
+    } else {
+      navigate("/");
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -73,9 +92,11 @@ const useLogin = () => {
     setName,
     setPassword,
     setIsLoggedIn,
+    setError,
     name,
     password,
     isLoggedIn,
+    error,
   };
 };
 

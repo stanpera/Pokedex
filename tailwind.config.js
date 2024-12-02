@@ -24,7 +24,7 @@ export default {
         "dark-black": "#222222",
         "main-gray": "#bbbbbb",
         "main-red": "#FF0000",
-        "fight-main-color": "#DDAF00",
+        "exit-arena": "#DDAF00",
       },
       backgroundImage: {
         "menu-button-gradient": "linear-gradient(to right, #DDAF00, #F5C542)",
@@ -72,10 +72,11 @@ export default {
         closedPasswordEye: ["fas fa-eye-slash"],
       },
       screens: {
-        "max-sm": { max: "639px" }, // Upewnij się, że breakpoint lg jest poprawnie ustawiony
+        "max-sm": { max: "639px" },
       },
       animation: {
-        shake: "shake 0.5s ease-in-out infinite", // Własna nazwa animacji
+        shake: "shake 0.5s ease-in-out infinite",
+        shake2: "shake2 2s ease-in-out infinite",
       },
       keyframes: {
         shake: {
@@ -83,6 +84,12 @@ export default {
           "25%": { transform: "translateX(-5px)" },
           "50%": { transform: "translateX(5px)" },
           "75%": { transform: "translateX(-5px)" },
+        },
+        shake2: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "25%": { transform: "translateY(-5px)" },
+          "50%": { transform: "translateY(5px)" },
+          "75%": { transform: "translateY(-5px)" },
         },
       },
     },

@@ -12,12 +12,11 @@ const FightSkullIcon = ({ onClick, disabled = false }) => {
       onClick={onClick}
       disabled={disabled}
       className={clsx(
-        "cursor-pointer text-center",
+        "cursor-pointer text-center w-2/12",
         theme === "light"
           ? "text-main-text-color"
           : "text-dark-second-text-color",
-        !disabled && theme === "light" && "hover:text-main-red",
-        !disabled && theme === "dark" && "hover:text-dark-red",
+        !disabled && "hover:text-main-red",
         disabled && "cursor-default opacity-50",
         !disabled && "hover:animate-shake"
       )}

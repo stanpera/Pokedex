@@ -3,8 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import RegistrationInput from "./RegistrationInput";
 import Button from "../Button";
-import { useSnackbar } from "notistack";
-import { useNavigate } from "react-router-dom";
+import useRegistration from "../../../hooks/useRegistration";
 
 const schema = z
   .object({
@@ -29,8 +28,7 @@ const schema = z
   });
 
 const RegistrationForm = () => {
-  const { enqueueSnackbar } = useSnackbar();
-  const navigate = useNavigate();
+  const { registerUser } = useRegistration();
 
   const {
     register,
@@ -41,41 +39,7 @@ const RegistrationForm = () => {
   });
 
   const onSubmit = async (data) => {
-    try {
-      const checkResponse = await fetch(
-        `http://localhost:3000/users?email=${encodeURIComponent(data.email)}`
-      );
-      const existingUsers = await checkResponse.json();
-      if (existingUsers.length > 0) {
-        enqueueSnackbar("Użytkownik o podanym adresie e-mail już istnieje!", {
-          variant: "warning",
-        });
-        return;
-      }
-      await fetch("http://localhost:3000/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          password: data.password,
-        }),
-      });
-      console.log(existingUsers);
-      enqueueSnackbar("Zostałeś pomyślnie zarejestrowany!", {
-        variant: "success",
-      });
-      navigate("/loginForm");
-    } catch (error) {
-      enqueueSnackbar(
-        "Aktualnie nie ma możliwości rejestracji nowych użytkowników. Spróbuj ponownie później.",
-        {
-          variant: "error",
-        }
-      );
-    }
+    await registerUser(data);
   };
 
   return (

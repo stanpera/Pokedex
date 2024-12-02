@@ -10,6 +10,8 @@ const PokemonCard = ({
   weight,
   baseExperience,
   ability,
+  win,
+  lost,
 }) => {
   const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
@@ -19,14 +21,21 @@ const PokemonCard = ({
   };
 
   return (
-    <div onClick={handleCardClick}
+    <div
+      onClick={handleCardClick}
       className={clsx(
-        "flex flex-col items-center shadow-md py-10 rounded-lg w-[360px] hover:scale-105 hover:shadow-lg transform transition-all duration-200 ease-in-out cursor-pointer",
+        "relative flex flex-col items-center shadow-md py-10 rounded-lg w-[360px] hover:scale-105 hover:shadow-lg transform transition-all duration-200 ease-in-out cursor-pointer",
         theme === "light"
           ? "bg-pokemon-card shadow-pokemon-card-shadow"
           : "bg-dark-pokemon-card shadow-dark-pokemon-card-shadow"
       )}
     >
+      {(win > 0 || lost > 0) && (
+        <div className={clsx("font-itim absolute top-0 left-0 p-2  rounded-tl-md rounded-br-md", theme === "light" ? "bg-main-gray font-bold" : "bg-dark-black")}>
+          <p>W: {win}</p>
+          <p>L: {lost}</p>
+        </div>
+      )}
       <div className="flex justify-center">
         <img className="w-64" src={image} alt={name} />
       </div>
@@ -131,4 +140,3 @@ const PokemonCard = ({
 };
 
 export default PokemonCard;
-

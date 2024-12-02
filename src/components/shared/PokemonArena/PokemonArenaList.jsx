@@ -1,25 +1,157 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useFetchPokemonList from "../../../hooks/useFetchPokemonList";
 import PokemonArenaCard from "./PokemonArenaCard";
 import Notification from "../Notification";
 import Loading from "../Loading";
 import logoPokedex from "../../../icons/logoPokedex.png";
 import FightSkullIcon from "../../../icons/FightSkullIcon";
+import ExitArenaIcon from "../../../icons/ExitArenaIcon";
+import { useNavigate } from "react-router-dom";
+import PokemonArenaResults from "./PokemonArenaResults";
+import usePokemonAfterFight from "../../../hooks/usePokemonAfterFight";
+// import useArenaDelete from "../../../hooks/Arena/useArenaDelete";
+import useArena from "../../../hooks/Arena/useArena";
 
 const PokemonArenaList = () => {
-  const [refreshKey, setRefreshKey] = useState(0); // Klucz do odświeżania
+  const [refreshKey, setRefreshKey] = useState(0);
+  const [whoWon, setWhoWon] = useState("initial");
+  const [whoLose, setWhoLose] = useState("initial");
+  const { manageAfterFight } = usePokemonAfterFight();
+
   const { data, loading, error } = useFetchPokemonList(
     `http://localhost:3000/arena?refreshKey=${refreshKey}`
+  );
+
+  const { deleteAllFromArena } = useArena();
+  const navigate = useNavigate();
+  const [pokemonData, setPokemonData] = useState([
+    {
+      id: null,
+      name: null,
+      image: logoPokedex,
+      height: null,
+      weight: null,
+      baseExperience: null,
+      ability: null,
+      win: null,
+      lost: null,
+    },
+    {
+      id: null,
+      name: null,
+      image: logoPokedex,
+      height: null,
+      weight: null,
+      baseExperience: null,
+      ability: null,
+      win: null,
+      lost: null,
+    },
+  ]);
+
+  useEffect(
+    () => {
+      if (data) {
+        setPokemonData([
+          data[0] || {
+            id: null,
+            name: null,
+            image: logoPokedex,
+            height: null,
+            weight: null,
+            baseExperience: null,
+            ability: null,
+            win: null,
+            lost: null,
+          },
+          data[1] || {
+            id: null,
+            name: null,
+            image: logoPokedex,
+            height: null,
+            weight: null,
+            baseExperience: null,
+            ability: null,
+            win: null,
+            lost: null,
+          },
+        ]);
+      }
+    },
+    [data],
+    [refreshKey]
   );
 
   const handleRefresh = () => {
     setRefreshKey((prevKey) => prevKey + 1);
   };
 
-  const handleClick = () => {
+  const handleBaseExperienceUpdate = (pokemon1, pokemon2) => {
+    if (
+      pokemon1.baseExperience * pokemon1.weight >
+      pokemon2.baseExperience * pokemon2.weight
+    ) {
+      return [
+        {
+          ...pokemon1,
+          baseExperience: pokemon1.baseExperience + 10,
+          win: pokemon1.win + 1,
+        },
+        {
+          ...pokemon2,
+          lost: pokemon2.lost + 1,
+        },
+      ];
+    } else if (
+      pokemon1.baseExperience * pokemon1.weight <
+      pokemon2.baseExperience * pokemon2.weight
+    ) {
+      return [
+        {
+          ...pokemon1,
+          lost: pokemon1.lost + 1,
+        },
+        {
+          ...pokemon2,
+          baseExperience: pokemon2.baseExperience + 10,
+          win: pokemon2.win + 1,
+        },
+      ];
+    }
+    return [pokemon1, pokemon2]; // Brak zmian w przypadku remisu
+  };
+
+  const handleFight = () => {
     if (!disabled) {
-      console.log("Fight!");
-      }
+      setPokemonData((prevPokemonData) =>
+        handleBaseExperienceUpdate(prevPokemonData[0], prevPokemonData[1])
+      );
+    }
+    if (
+      pokemonData[0].baseExperience * pokemonData[0].weight >
+      pokemonData[1].baseExperience * pokemonData[1].weight
+    ) {
+      setWhoWon("first");
+      setWhoLose("second");
+    } else if (
+      pokemonData[0].baseExperience * pokemonData[0].weight <
+      pokemonData[1].baseExperience * pokemonData[1].weight
+    ) {
+      setWhoWon("second");
+      setWhoLose("first");
+    } else {
+      setWhoWon("draw");
+    }
+  };
+
+  const handleExit = () => {
+    manageAfterFight(pokemonData[0]);
+    manageAfterFight(pokemonData[1]);
+    setWhoWon("initial");
+    setWhoLose("initial");
+    deleteAllFromArena([pokemonData[0].id]);
+    deleteAllFromArena(pokemonData[1].id);
+    navigate("/");
   };
 
   if (loading) {
@@ -30,34 +162,13 @@ const PokemonArenaList = () => {
     return <Notification variant="secondary" message={error} />;
   }
 
-  const pokemonData = [
-    data[0] || {
-      id: null,
-      name: null,
-      image: logoPokedex,
-      height: null,
-      weight: null,
-      baseExperience: null,
-      ability: null,
-    },
-    data[1] || {
-      id: null,
-      name: null,
-      image: logoPokedex,
-      height: null,
-      weight: null,
-      baseExperience: null,
-      ability: null,
-    },
-  ];
-
   const disabled =
     pokemonData[0].image === logoPokedex ||
     pokemonData[1].image === logoPokedex;
 
   return (
     <div className="relative flex flex-col items-center mt-10">
-      <div className="flex w-4/5 flex-wrap items-center justify-center gap-y-10 gap-x-12 mb-10">
+      <div className="flex w-4/5 flex-wrap items-center justify-center mb-10">
         <PokemonArenaCard
           id={pokemonData[0].id}
           name={pokemonData[0].name}
@@ -66,9 +177,17 @@ const PokemonArenaList = () => {
           weight={pokemonData[0].weight}
           baseExperience={pokemonData[0].baseExperience}
           ability={pokemonData[0].ability}
-          onArenaChange={handleRefresh} // Obsługa odświeżenia
+          win={pokemonData[0].win}
+          lost={pokemonData[0].lost}
+          onArenaChange={handleRefresh}
+          isWinner={whoWon === "first"}
+          isLoser={whoLose === "first"}
         />
-        <FightSkullIcon onClick={handleClick} disabled={disabled} />
+        {whoWon === "initial" ? (
+          <FightSkullIcon onClick={handleFight} disabled={disabled} />
+        ) : (
+          <ExitArenaIcon onClick={handleExit} />
+        )}
         <PokemonArenaCard
           id={pokemonData[1].id}
           name={pokemonData[1].name}
@@ -77,9 +196,20 @@ const PokemonArenaList = () => {
           weight={pokemonData[1].weight}
           baseExperience={pokemonData[1].baseExperience}
           ability={pokemonData[1].ability}
-          onArenaChange={handleRefresh} // Obsługa odświeżenia
+          win={pokemonData[1].win}
+          lost={pokemonData[1].lost}
+          onArenaChange={handleRefresh}
+          isWinner={whoWon === "second"}
+          isLoser={whoLose === "second"}
         />
       </div>
+      {whoWon && (
+        <PokemonArenaResults
+          firstPokemon={pokemonData[0].name}
+          secondPokemon={pokemonData[1].name}
+          whoWon={whoWon}
+        />
+      )}
     </div>
   );
 };

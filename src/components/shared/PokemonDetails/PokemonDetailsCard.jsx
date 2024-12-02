@@ -5,7 +5,7 @@ import { ThemeContext } from "../../../context/ThemeContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import useFavourite from "../../../hooks/useFavourite";
-import useArena from "../../../hooks/useArena";
+import useArena from "../../../hooks/Arena/useArena";
 import ArenaSkullIcon from "../../../icons/ArenaSkullIcon";
 const PokemonDetailsCard = ({
   id,
@@ -15,6 +15,8 @@ const PokemonDetailsCard = ({
   weight,
   experience,
   ability,
+  win,
+  lost,
 }) => {
   const { theme } = useContext(ThemeContext);
   const { isFavorite, toggleFavourite } = useFavourite(name);
@@ -41,6 +43,8 @@ const PokemonDetailsCard = ({
       weight,
       baseExperience: experience,
       ability: ability || "No abilities available",
+      win: 0,
+      lost: 0,
     });
   };
   return (
@@ -69,29 +73,14 @@ const PokemonDetailsCard = ({
               )}
             />
           </div>
-          <ArenaSkullIcon isArena={isArena} onClick={handleArena}/>
-          {/* <div className="cursor-pointer" onClick={handleArena}>
-            <FontAwesomeIcon
-              icon={faSkullCrossbones}
-              className={clsx(
-                "text-3xl",
-                isArena
-                  ? theme === "light"
-                    ? "text-main-red"
-                    : "text-dark-red"
-                  : theme === "light"
-                  ? "text-main-gray"
-                  : "text-dark-second-text-color"
-              )}
-            />
-          </div> */}
+          <ArenaSkullIcon isArena={isArena} onClick={handleArena} />
         </div>
       )}
       <div>
         <img src={image} alt={name} className="w-96 mt-4" />
       </div>
       <div className="flex flex-col items-center w-2/4">
-        <h3 className="text-4xl font-bold capitalize mb-10 font-bangers">
+        <h3 className="text-4xl capitalize mb-10 font-bangers">
           {name}
         </h3>
         <div className="flex w-full justify-around">
@@ -179,6 +168,50 @@ const PokemonDetailsCard = ({
               </span>
             </p>
           </div>
+          {isLoggedIn && (
+            <div>
+              <p
+                className={clsx(
+                  "text-xl text-center font-itim mb-2",
+                  theme === "light"
+                    ? "text-pokemon-card-details"
+                    : "text-dark-second-text-color"
+                )}
+              >
+                {win ? win : 0}
+                <span
+                  className={clsx(
+                    "block",
+                    theme === "light"
+                      ? "text-main-text-color"
+                      : "text-dark-main-text-color"
+                  )}
+                >
+                  Wins:
+                </span>
+              </p>
+              <p
+                className={clsx(
+                  "text-xl text-center font-itim mt-6",
+                  theme === "light"
+                    ? "text-pokemon-card-details"
+                    : "text-dark-second-text-color"
+                )}
+              >
+                {lost ? lost : 0}
+                <span
+                  className={clsx(
+                    "block",
+                    theme === "light"
+                      ? "text-main-text-color"
+                      : "text-dark-main-text-color"
+                  )}
+                >
+                  Losts:
+                </span>
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -186,7 +219,3 @@ const PokemonDetailsCard = ({
 };
 
 export default PokemonDetailsCard;
-
-
-
-

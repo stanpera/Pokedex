@@ -1,7 +1,7 @@
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../../context/ThemeContext";
 
 const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
   const { theme } = useContext(ThemeContext);

@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import RegistrationInput from "./RegistrationInput";
-import Button from "../Button";
+import Button from "../Other/Button";
 import useRegistration from "../../../hooks/useRegistration";
 
 const schema = z

@@ -138,24 +138,6 @@
       "ability": "shield-dust"
     },
     {
-      "id": "ivysaur",
-      "name": "ivysaur",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png",
-      "height": 10,
-      "weight": 130,
-      "baseExperience": 142,
-      "ability": "overgrow"
-    },
-    {
-      "id": "ivysaur",
-      "name": "ivysaur",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png",
-      "height": 10,
-      "weight": 130,
-      "baseExperience": 142,
-      "ability": "overgrow"
-    },
-    {
       "id": "squirtle",
       "name": "squirtle",
       "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
@@ -183,19 +165,7 @@
       "ability": "overgrow"
     }
   ],
-  "arena": [
-    {
-      "id": "bulbasaur",
-      "name": "bulbasaur",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-      "height": 7,
-      "weight": 69,
-      "baseExperience": 64,
-      "ability": "overgrow",
-      "win": 0,
-      "lost": 0
-    }
-  ],
+  "arena": [],
   "pokemonAfterFight": [
     {
       "id": "bulbasaur",

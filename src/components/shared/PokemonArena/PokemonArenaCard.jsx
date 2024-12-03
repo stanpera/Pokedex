@@ -2,7 +2,7 @@ import { useContext, useRef, useEffect, useState } from "react";
 import { ThemeContext } from "../../../context/ThemeContext";
 import clsx from "clsx";
 import useArena from "../../../hooks/Arena/useArena";
-import DeleteIcon from "../../../icons/DeleteIcon";
+import DeleteIcon from "./DeleteIcon";
 import Confetti from "react-confetti";
 
 const PokemonArenaCard = ({

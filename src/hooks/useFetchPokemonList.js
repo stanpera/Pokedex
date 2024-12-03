@@ -18,7 +18,7 @@ const useFetchPokemonList = (url) => {
           throw new Error("Wystąpił błąd podczas pobierania danych.");
         }
         const result = await response.json();
-
+        
         const afterFightResponse = await fetch(
           `http://localhost:3000/pokemonAfterFight`
         );

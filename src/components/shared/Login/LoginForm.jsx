@@ -1,4 +1,4 @@
-import Button from "../Button";
+import Button from "../Other/Button";
 import { useContext } from "react";
 import { LoginContext } from "../../../context/LoginContext";
 import LoginInput from "./LoginInput";

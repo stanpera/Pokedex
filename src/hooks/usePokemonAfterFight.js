@@ -45,9 +45,6 @@ const usePokemonAfterFight = () => {
     }
   };
 
-  const getPokemonAfterFight = () => {
-    const { enqueueSnackbar } = useSnackbar();
-  }
   return { manageAfterFight };
 };
 

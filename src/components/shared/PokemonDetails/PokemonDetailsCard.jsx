@@ -2,11 +2,12 @@ import clsx from "clsx";
 import { useContext } from "react";
 import { LoginContext } from "../../../context/LoginContext";
 import { ThemeContext } from "../../../context/ThemeContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import useFavourite from "../../../hooks/useFavourite";
 import useArena from "../../../hooks/Arena/useArena";
-import ArenaSkullIcon from "../../../icons/ArenaSkullIcon";
+import ArenaSkullIcon from "./ArenaSkullIcon";
+import AbilityContainer from "../PokemonList/AbilityContainer";
+import HeartIcon from "./HeartIcon";
+
 const PokemonDetailsCard = ({
   id,
   image,
@@ -58,21 +59,7 @@ const PokemonDetailsCard = ({
     >
       {isLoggedIn && (
         <div className="flex gap-x-5 absolute top-6 right-6">
-          <div className="cursor-pointer" onClick={handleFavourites}>
-            <FontAwesomeIcon
-              icon={faHeart}
-              className={clsx(
-                "text-3xl",
-                isFavorite
-                  ? theme === "light"
-                    ? "text-main-red"
-                    : "text-dark-red"
-                  : theme === "light"
-                  ? "text-main-gray"
-                  : "text-dark-second-text-color"
-              )}
-            />
-          </div>
+          <HeartIcon isFavorite={isFavorite} onClick={handleFavourites} />
           <ArenaSkullIcon isArena={isArena} onClick={handleArena} />
         </div>
       )}
@@ -80,136 +67,28 @@ const PokemonDetailsCard = ({
         <img src={image} alt={name} className="w-96 mt-4" />
       </div>
       <div className="flex flex-col items-center w-2/4">
-        <h3 className="text-4xl capitalize mb-10 font-bangers">
-          {name}
-        </h3>
+        <h3 className="text-4xl capitalize mb-10 font-bangers">{name}</h3>
         <div className="flex w-full justify-around">
           <div>
-            <p
-              className={clsx(
-                "text-xl text-center font-itim mb-2",
-                theme === "light"
-                  ? "text-pokemon-card-details"
-                  : "text-dark-second-text-color"
-              )}
-            >
-              {height}
-              <span
-                className={clsx(
-                  "block",
-                  theme === "light"
-                    ? "text-main-text-color"
-                    : "text-dark-main-text-color"
-                )}
-              >
-                Height
-              </span>
-            </p>
-            <p
-              className={clsx(
-                "text-xl text-center font-itim mt-6",
-                theme === "light"
-                  ? "text-pokemon-card-details"
-                  : "text-dark-second-text-color"
-              )}
-            >
-              {weight}
-              <span
-                className={clsx(
-                  "block",
-                  theme === "light"
-                    ? "text-main-text-color"
-                    : "text-dark-main-text-color"
-                )}
-              >
-                Weight
-              </span>
-            </p>
+            <AbilityContainer parametr={height}>Height</AbilityContainer>
+            <AbilityContainer parametr={weight}>Weight</AbilityContainer>
           </div>
           <div>
-            <p
-              className={clsx(
-                "text-xl text-center font-itim mb-2",
-                theme === "light"
-                  ? "text-pokemon-card-details"
-                  : "text-dark-second-text-color"
-              )}
-            >
-              {experience}
-              <span
-                className={clsx(
-                  "block",
-                  theme === "light"
-                    ? "text-main-text-color"
-                    : "text-dark-main-text-color"
-                )}
-              >
-                Base Experience
-              </span>
-            </p>
-            <p
-              className={clsx(
-                "text-xl text-center font-itim mt-6",
-                theme === "light"
-                  ? "text-pokemon-card-details"
-                  : "text-dark-second-text-color"
-              )}
-            >
-              {ability || "No abilities available"}
-              <span
-                className={clsx(
-                  "block",
-                  theme === "light"
-                    ? "text-main-text-color"
-                    : "text-dark-main-text-color"
-                )}
-              >
-                Ability
-              </span>
-            </p>
+            <AbilityContainer parametr={experience}>
+              Base Experience
+            </AbilityContainer>
+            <AbilityContainer parametr={ability}>Ability</AbilityContainer>
           </div>
           {isLoggedIn && (
             <div>
-              <p
-                className={clsx(
-                  "text-xl text-center font-itim mb-2",
-                  theme === "light"
-                    ? "text-pokemon-card-details"
-                    : "text-dark-second-text-color"
-                )}
-              >
-                {win ? win : 0}
-                <span
-                  className={clsx(
-                    "block",
-                    theme === "light"
-                      ? "text-main-text-color"
-                      : "text-dark-main-text-color"
-                  )}
-                >
-                  Wins:
-                </span>
-              </p>
-              <p
-                className={clsx(
-                  "text-xl text-center font-itim mt-6",
-                  theme === "light"
-                    ? "text-pokemon-card-details"
-                    : "text-dark-second-text-color"
-                )}
-              >
-                {lost ? lost : 0}
-                <span
-                  className={clsx(
-                    "block",
-                    theme === "light"
-                      ? "text-main-text-color"
-                      : "text-dark-main-text-color"
-                  )}
-                >
-                  Losts:
-                </span>
-              </p>
+              <>
+                <AbilityContainer parametr={win ? win : 0}>
+                  Wins
+                </AbilityContainer>
+                <AbilityContainer parametr={lost ? lost : 0}>
+                  Losts
+                </AbilityContainer>
+              </>
             </div>
           )}
         </div>

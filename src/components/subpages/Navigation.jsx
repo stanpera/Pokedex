@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../context/LoginContext";
 import logoPokedex from "../../icons/logoPokedex.png";
-import Button from "../shared/Button";
+import Button from "../shared/Other/Button";
 import ThemeSwitcher from "../shared/NavigationElements/ThemeSwitcher";
 import UserLogo from "../shared/NavigationElements/UserLogo";
 import { ThemeContext } from "../../context/ThemeContext";

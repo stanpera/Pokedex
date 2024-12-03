@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../../context/ThemeContext";
 import clsx from "clsx";
 const Button = ({
   children,

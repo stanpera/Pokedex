@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import useFetchPokemonList from "../../../hooks/useFetchPokemonList";
 import PokemonArenaCard from "./PokemonArenaCard";
-import Notification from "../Notification";
-import Loading from "../Loading";
+import Notification from "../Other/Notification";
+import Loading from "../Other/Loading";
 import logoPokedex from "../../../icons/logoPokedex.png";
 import FightSkullIcon from "../../../icons/FightSkullIcon";
 import ExitArenaIcon from "../../../icons/ExitArenaIcon";
 import { useNavigate } from "react-router-dom";
 import PokemonArenaResults from "./PokemonArenaResults";
 import usePokemonAfterFight from "../../../hooks/usePokemonAfterFight";
-// import useArenaDelete from "../../../hooks/Arena/useArenaDelete";
 import useArena from "../../../hooks/Arena/useArena";
 
 const PokemonArenaList = () => {

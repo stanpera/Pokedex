@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import useFetchPokemonList from "../../../hooks/useFetchPokemonList";
 import PokemonCard from "./PokemonCard";
-import CustomPagination from "../CustomPagination";
-import PokemonSearching from "../PokemonSearching";
-import Notification from "../Notification";
-import Loading from "../Loading";
+import CustomPagination from "../Other/CustomPagination";
+import PokemonSearching from "../Other/PokemonSearching";
+import Notification from "../Other/Notification";
+import Loading from "../Other/Loading";
 
-const PokemonList = ({ url }) => {
+const PokemonList = () => {
   const itemsPerPage = 15;
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
@@ -26,7 +26,7 @@ const PokemonList = ({ url }) => {
       );
       setFilteredData(filteredPokemons);
     }
-  }, [data, search, url]);
+  }, [data, search]);
 
   if (loading) {
     return <Loading />;

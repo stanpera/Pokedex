@@ -2,7 +2,7 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { ThemeContext } from "../../../context/ThemeContext";
 
 const DeleteIcon = ({ className, onClick }) => {
   const { theme } = useContext(ThemeContext);

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import useFetchPokemonList from "../../../hooks/useFetchPokemonList";
 import PokemonCard from "../PokemonList/PokemonCard";
-import CustomPagination from "../CustomPagination";
-import PokemonSearching from "../PokemonSearching";
-import Notification from "../Notification";
-import Loading from "../Loading";
+import CustomPagination from "../Other/CustomPagination";
+import PokemonSearching from "../Other/PokemonSearching";
+import Notification from "../Other/Notification";
+import Loading from "../Other/Loading";
 
 const PokemonFavouriteList = () => {
   const itemsPerPage = 15;
@@ -79,6 +79,8 @@ const PokemonFavouriteList = () => {
                   pokemon.ability ||
                   "No abilities available"
                 }
+                win={pokemon.win}
+                lost={pokemon.lost}
               />
             ))
           )}

@@ -2,8 +2,9 @@ import { useContext } from "react";
 import { ThemeContext } from "../../../context/ThemeContext";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
+import AbilityContainer from "./AbilityContainer";
+import NameContainer from "./NameContainer";
 const PokemonCard = ({
-  id,
   name,
   image,
   height,
@@ -31,7 +32,12 @@ const PokemonCard = ({
       )}
     >
       {(win > 0 || lost > 0) && (
-        <div className={clsx("font-itim absolute top-0 left-0 p-2  rounded-tl-md rounded-br-md", theme === "light" ? "bg-main-gray font-bold" : "bg-dark-black")}>
+        <div
+          className={clsx(
+            "font-itim absolute top-0 left-0 p-2  rounded-tl-md rounded-br-md",
+            theme === "light" ? "bg-main-gray font-bold" : "bg-dark-black"
+          )}
+        >
           <p>W: {win}</p>
           <p>L: {lost}</p>
         </div>
@@ -39,100 +45,17 @@ const PokemonCard = ({
       <div className="flex justify-center">
         <img className="w-64" src={image} alt={name} />
       </div>
-      <h3
-        className={clsx(
-          "text-3xl text-center leading-none capitalize font-bangers",
-          theme === "light"
-            ? "text-main-text-color"
-            : "text-dark-main-text-color"
-        )}
-      >
-        {name}
-      </h3>
+      <NameContainer parametr={name} />
       <div className="mt-5 w-3/4 flex justify-between">
         <div>
-          <p
-            className={clsx(
-              "text-xl text-center font-itim mb-2",
-              theme === "light"
-                ? "text-pokemon-card-details"
-                : "text-dark-second-text-color"
-            )}
-          >
-            {height}
-            <span
-              className={clsx(
-                "block",
-                theme === "light"
-                  ? "text-main-text-color"
-                  : "text-dark-main-text-color"
-              )}
-            >
-              Height
-            </span>
-          </p>
-          <p
-            className={clsx(
-              "text-xl text-center font-itim",
-              theme === "light"
-                ? "text-pokemon-card-details"
-                : "text-dark-second-text-color"
-            )}
-          >
-            {weight}
-            <span
-              className={clsx(
-                "block",
-                theme === "light"
-                  ? "text-main-text-color"
-                  : "text-dark-main-text-color"
-              )}
-            >
-              Weight
-            </span>
-          </p>
+          <AbilityContainer parametr={height}>Height</AbilityContainer>
+          <AbilityContainer parametr={weight}>Weight</AbilityContainer>
         </div>
         <div>
-          <p
-            className={clsx(
-              "text-xl text-center font-itim mb-2",
-              theme === "light"
-                ? "text-pokemon-card-details"
-                : "text-dark-second-text-color"
-            )}
-          >
-            {baseExperience}
-            <span
-              className={clsx(
-                "block",
-                theme === "light"
-                  ? "text-main-text-color"
-                  : "text-dark-main-text-color"
-              )}
-            >
-              Base Experience
-            </span>
-          </p>
-          <p
-            className={clsx(
-              "text-xl text-center font-itim",
-              theme === "light"
-                ? "text-pokemon-card-details"
-                : "text-dark-second-text-color"
-            )}
-          >
-            {ability}
-            <span
-              className={clsx(
-                "block",
-                theme === "light"
-                  ? "text-main-text-color"
-                  : "text-dark-main-text-color"
-              )}
-            >
-              Ability
-            </span>
-          </p>
+          <AbilityContainer parametr={baseExperience}>
+            Base Experience
+          </AbilityContainer>
+          <AbilityContainer parametr={ability}>Ability</AbilityContainer>
         </div>
       </div>
     </div>

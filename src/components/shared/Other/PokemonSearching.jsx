@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../../context/ThemeContext";
 import clsx from "clsx";
 
 const PokemonSearching = ({ search, setSearch }) => {
@@ -12,7 +12,7 @@ const PokemonSearching = ({ search, setSearch }) => {
   return (
     <div
       className={clsx(
-        "flex justify-center py-2 mb-3 shadow-md rounded-md ",
+        "flex justify-center py-2 shadow-md rounded-md ",
         theme === "light"
           ? "bg-searching-pokemon shadow-searching-pokemon-shadow"
           : "bg-dark-red shadow-dark-red-shadow"

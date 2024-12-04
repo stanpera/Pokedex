@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { LoginContext } from "../../../context/LoginContext";
 import { ThemeContext } from "../../../context/ThemeContext";
 import useFavourite from "../../../hooks/useFavourite";
-import useArena from "../../../hooks/Arena/useArena";
+import useArena from "../../../hooks/useArena";
 import ArenaSkullIcon from "./ArenaSkullIcon";
 import AbilityContainer from "../PokemonList/AbilityContainer";
 import HeartIcon from "./HeartIcon";

@@ -12,7 +12,7 @@ const FightSkullIcon = ({ onClick, disabled = false }) => {
       onClick={onClick}
       disabled={disabled}
       className={clsx(
-        "cursor-pointer text-center w-2/12",
+        "cursor-pointer text-center w-40 my-5 md:my-0",
         theme === "light"
           ? "text-main-text-color"
           : "text-dark-second-text-color",
@@ -21,8 +21,8 @@ const FightSkullIcon = ({ onClick, disabled = false }) => {
         !disabled && "hover:animate-shake"
       )}
     >
-      <FontAwesomeIcon icon={faSkullCrossbones} className={clsx("text-7xl")} />
-      <h3 className={clsx("text-4xl mt-2 text-center font-bangers")}>WALCZ!</h3>
+      <FontAwesomeIcon icon={faSkullCrossbones} className={clsx("text-4xl lg:text-6xl")} />
+      <h3 className={clsx("text-2xl lg:text-3xl  text-center font-bangers")}>WALCZ!</h3>
     </button>
   );
 };

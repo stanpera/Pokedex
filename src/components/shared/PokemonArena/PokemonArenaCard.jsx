@@ -1,10 +1,11 @@
 import { useContext, useRef, useEffect, useState } from "react";
 import { ThemeContext } from "../../../context/ThemeContext";
 import clsx from "clsx";
-import useArena from "../../../hooks/Arena/useArena";
+import useArena from "../../../hooks/useArena";
 import DeleteIcon from "./DeleteIcon";
 import Confetti from "react-confetti";
-
+import NameContainer from "../PokemonList/NameContainer";
+import AbilityContainer from "../PokemonList/AbilityContainer";
 const PokemonArenaCard = ({
   id,
   name,
@@ -53,7 +54,7 @@ const PokemonArenaCard = ({
     <div
       ref={cardRef} // Przypisanie ref do kontenera
       className={clsx(
-        "relative flex flex-col items-center shadow-md py-10 rounded-lg w-[360px]",
+        "relative flex flex-col items-center shadow-md py-5 lg:py-10 rounded-lg w-[240px] lg:w-[360px]",
         theme === "light"
           ? "bg-pokemon-card shadow-pokemon-card-shadow"
           : "bg-dark-pokemon-card shadow-dark-pokemon-card-shadow",
@@ -68,7 +69,7 @@ const PokemonArenaCard = ({
       {(win > 0 || lost > 0) && (
         <div
           className={clsx(
-            "font-itim absolute top-0 left-0 p-2  rounded-tl-md rounded-br-md",
+            "text-sm lg:text-lg xl:text-xl font-itim absolute top-0 left-0 p-2  rounded-tl-md rounded-br-md",
             theme === "light" ? "bg-main-gray font-bold" : "bg-dark-black"
           )}
         >
@@ -83,105 +84,20 @@ const PokemonArenaCard = ({
         />
       )}
       <div className="flex justify-center">
-        <img className={clsx("w-64")} src={image} alt={name} />
+        <img className={clsx("w-40 lg:w-64")} src={image} alt={name} />
       </div>
-      {name !== null && (
-        <h3
-          className={clsx(
-            "text-3xl text-center leading-none capitalize font-bangers",
-            theme === "light"
-              ? "text-main-text-color"
-              : "text-dark-main-text-color"
-          )}
-        >
-          {name}
-        </h3>
-      )}
+      {name !== null && <NameContainer parametr={name} />}
       {height !== null && (
         <div className="mt-5 w-3/4 flex justify-between">
           <div>
-            <p
-              className={clsx(
-                "text-xl text-center font-itim mb-2",
-                theme === "light"
-                  ? "text-pokemon-card-details"
-                  : "text-dark-second-text-color"
-              )}
-            >
-              {height}
-              <span
-                className={clsx(
-                  "block",
-                  theme === "light"
-                    ? "text-main-text-color"
-                    : "text-dark-main-text-color"
-                )}
-              >
-                Height
-              </span>
-            </p>
-            <p
-              className={clsx(
-                "text-xl text-center font-itim",
-                theme === "light"
-                  ? "text-pokemon-card-details"
-                  : "text-dark-second-text-color"
-              )}
-            >
-              {weight}
-              <span
-                className={clsx(
-                  "block",
-                  theme === "light"
-                    ? "text-main-text-color"
-                    : "text-dark-main-text-color"
-                )}
-              >
-                Weight
-              </span>
-            </p>
+            <AbilityContainer parametr={height}>Height</AbilityContainer>
+            <AbilityContainer parametr={weight}>Weight</AbilityContainer>
           </div>
           <div>
-            <p
-              className={clsx(
-                "text-xl text-center font-itim mb-2",
-                theme === "light"
-                  ? "text-pokemon-card-details"
-                  : "text-dark-second-text-color"
-              )}
-            >
-              {baseExperience}
-              <span
-                className={clsx(
-                  "block",
-                  theme === "light"
-                    ? "text-main-text-color"
-                    : "text-dark-main-text-color"
-                )}
-              >
-                Base Experience
-              </span>
-            </p>
-            <p
-              className={clsx(
-                "text-xl text-center font-itim",
-                theme === "light"
-                  ? "text-pokemon-card-details"
-                  : "text-dark-second-text-color"
-              )}
-            >
-              {ability}
-              <span
-                className={clsx(
-                  "block",
-                  theme === "light"
-                    ? "text-main-text-color"
-                    : "text-dark-main-text-color"
-                )}
-              >
-                Ability
-              </span>
-            </p>
+            <AbilityContainer parametr={baseExperience}>
+              Base Experience
+            </AbilityContainer>
+            <AbilityContainer parametr={ability}>Ability</AbilityContainer>
           </div>
         </div>
       )}

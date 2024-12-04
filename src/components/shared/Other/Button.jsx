@@ -2,15 +2,8 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "../../../context/ThemeContext";
 import clsx from "clsx";
-const Button = ({
-  children,
-  onClick,
-  to,
-  color,
-  size,
-  className,
-  disabled = false,
-}) => {
+
+const Button = ({ children, onClick, to, color, className }) => {
   const { theme } = useContext(ThemeContext);
 
   if (to) {
@@ -18,7 +11,7 @@ const Button = ({
       <Link
         to={to}
         className={clsx(
-          `px-6 py-2  font-semibold rounded border-0 shadow-sm`,
+          `text-base px-2 py-2 lg:text-lg lg:px-3 xl:text-xl xl:px-5 text-center font-semibold rounded border-0 shadow-sm`,
           color === "menu" &&
             theme === "light" &&
             "shadow-navigation-button-shadow bg-menu-button-gradient hover:bg-hover-menu-button-gradient",
@@ -37,9 +30,6 @@ const Button = ({
           color === "logout" &&
             theme === "dark" &&
             "shadow-dark-black bg-dark-red-gradient hover:bg-hover-dark-red-gradient",
-          size === "small" && "text-sm",
-          size === "medium" && "text-xl",
-          size === "large" && "text-2xl",
           `${className}`
         )}
       >
@@ -52,7 +42,7 @@ const Button = ({
     <button
       onClick={onClick}
       className={clsx(
-        `px-6 py-2  font-semibold rounded border-0 shadow-sm`,
+        `text-base px-2 py-2 lg:text-lg lg:px-4 xl:text-xl xl:px-5 text-center font-semibold rounded border-0 shadow-sm`,
         color === "menu" &&
           theme === "light" &&
           "shadow-navigation-button-shadow bg-menu-button-gradient hover:bg-hover-menu-button-gradient",
@@ -71,9 +61,6 @@ const Button = ({
         color === "logout" &&
           theme === "dark" &&
           "shadow-dark-black bg-dark-red-gradient hover:bg-hover-dark-red-gradient",
-        size === "small" && "text-sm",
-        size === "medium" && "text-xl",
-        size === "large" && "text-2xl",
         `${className}`
       )}
     >
@@ -84,5 +71,3 @@ const Button = ({
 
 export default Button;
 
-
-  

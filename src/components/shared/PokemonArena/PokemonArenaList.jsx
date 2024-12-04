@@ -8,14 +8,14 @@ import FightSkullIcon from "../../../icons/FightSkullIcon";
 import ExitArenaIcon from "../../../icons/ExitArenaIcon";
 import { useNavigate } from "react-router-dom";
 import PokemonArenaResults from "./PokemonArenaResults";
-import usePokemonAfterFight from "../../../hooks/usePokemonAfterFight";
-import useArena from "../../../hooks/Arena/useArena";
+import usePokemonUpdate from "../../../hooks/usePokemonUpdate";
+import useArena from "../../../hooks/useArena";
 
 const PokemonArenaList = () => {
   const [refreshKey, setRefreshKey] = useState(0);
   const [whoWon, setWhoWon] = useState("initial");
   const [whoLose, setWhoLose] = useState("initial");
-  const { manageAfterFight } = usePokemonAfterFight();
+  const { manageUpdate } = usePokemonUpdate();
 
   const { data, loading, error } = useFetchPokemonList(
     `http://localhost:3000/arena?refreshKey=${refreshKey}`
@@ -144,8 +144,8 @@ const PokemonArenaList = () => {
   };
 
   const handleExit = () => {
-    manageAfterFight(pokemonData[0]);
-    manageAfterFight(pokemonData[1]);
+    manageUpdate(pokemonData[0]);
+    manageUpdate(pokemonData[1]);
     setWhoWon("initial");
     setWhoLose("initial");
     deleteAllFromArena([pokemonData[0].id]);
@@ -167,7 +167,7 @@ const PokemonArenaList = () => {
 
   return (
     <div className="relative flex flex-col items-center mt-10">
-      <div className="flex w-4/5 flex-wrap items-center justify-center mb-10">
+      <div className="flex flex-col sm:flex-row w-4/5 items-center justify-center mb-10">
         <PokemonArenaCard
           id={pokemonData[0].id}
           name={pokemonData[0].name}
@@ -205,7 +205,9 @@ const PokemonArenaList = () => {
       {whoWon && (
         <PokemonArenaResults
           firstPokemon={pokemonData[0].name}
+          firstPokemonXp={[pokemonData[0].baseExperience]}
           secondPokemon={pokemonData[1].name}
+          SecondPokemonXp={[pokemonData[1].baseExperience]}
           whoWon={whoWon}
         />
       )}

@@ -52,24 +52,28 @@ const RegistrationForm = () => {
         <RegistrationInput
           register={register}
           name="name"
+          inputType="text"
           placeholder="Wpisz imię"
           error={errors.name}
         />
         <RegistrationInput
           register={register}
           name="email"
+          inputType="text"
           placeholder="Wpisz email"
           error={errors.email}
         />
         <RegistrationInput
           register={register}
           name="password"
+          inputType="password"
           placeholder="Wpisz hasło"
           error={errors.password}
         />
         <RegistrationInput
           register={register}
           name="confirmPassword"
+          inputType="password"
           placeholder="Powtórz hasło"
           error={errors.confirmPassword}
         />

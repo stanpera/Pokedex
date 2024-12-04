@@ -9,7 +9,7 @@ const UserLogo = ({ children }) => {
   return (
     <div
       className={clsx(
-        "pb-2 text-xl",
+        "pb-2 text-md md:text-xl",
         theme === "light" ? "text-main-text-color" : "text-dark-second-text-color"
       )}
     >

@@ -14,7 +14,7 @@ const ThemeSwitcher = () => {
       <div
         onClick={toggleTheme}
         className={clsx(
-          "relative inline-flex items-center justify-center w-10 h-5 rounded-full transition-colors border-0 focus:ring-0 shadow-sm cursor-pointer",
+          "relative inline-flex items-center justify-center w-8 h-4 md:w-10 md:h-5 rounded-full transition-colors border-0 focus:ring-0 shadow-sm cursor-pointer",
           theme === "light"
             ? "bg-switcherColor shadow-switcherShadow"
             : "bg-dark-second-text-color shadow-dark-red-shadow"
@@ -22,8 +22,10 @@ const ThemeSwitcher = () => {
       >
         <span
           className={clsx(
-            "absolute left-0 w-5 h-5 rounded-full transform transition-transform",
-            theme === "light" ? "bg-white" : "translate-x-6 bg-dark-red"
+            "absolute left-0 w-4 h-4 md:w-5 md:h-5 rounded-full transform transition-transform",
+            theme === "light"
+              ? "bg-white"
+              : "translate-x-4 lg:translate-x-5 bg-dark-red"
           )}
         />
       </div>
@@ -32,9 +34,3 @@ const ThemeSwitcher = () => {
 };
 
 export default ThemeSwitcher;
-
-
-
-
-
-

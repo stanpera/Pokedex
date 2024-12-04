@@ -4,10 +4,16 @@ import clsx from "clsx";
 import { useContext } from "react";
 import { ThemeContext } from "../../../context/ThemeContext";
 
-const RegistrationInput = ({ register, name, placeholder, error }) => {
+const RegistrationInput = ({
+  register,
+  name,
+  placeholder,
+  error,
+  inputType,
+}) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const {theme} = useContext(ThemeContext)
-  
+  const { theme } = useContext(ThemeContext);
+
   const togglePasswordVisibility = () => {
     setPasswordVisible((prevState) => !prevState);
   };
@@ -18,17 +24,19 @@ const RegistrationInput = ({ register, name, placeholder, error }) => {
         <input
           {...register(name)}
           type={
-            name === "password" || name === "confirmPassword"
+            inputType === "password"
               ? passwordVisible
                 ? "text"
                 : "password"
-              : "text"
+              : inputType
           }
           placeholder={placeholder}
           className={clsx(
             "w-full text-center mr-3 py-1 text-green rounded-md text-lg",
             error ? "border-solid border-2 border-errorText" : "border-none",
-            theme === "light" ? "bg-form-input" : "bg-dark-form-input text-dark-black"
+            theme === "light"
+              ? "bg-form-input"
+              : "bg-dark-form-input text-dark-black"
           )}
         />
         {(name === "password" || name === "confirmPassword") && (
@@ -45,11 +53,13 @@ const RegistrationInput = ({ register, name, placeholder, error }) => {
           </span>
         )}
       </div>
-      {error && <p className="text-errorText text-sm">{error.message}</p>}
+      {error && (
+        <p className={"text-base text-center text-main-red"}>
+          {error.message}
+        </p>
+      )}
     </>
   );
 };
 
 export default RegistrationInput;
-
-

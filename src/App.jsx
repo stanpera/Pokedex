@@ -9,6 +9,7 @@ import RegistrationForm from "./components/shared/Registration/RegistrationForm.
 import LoginForm from "./components/shared/Login/LoginForm.jsx";
 import { LoginProvider } from "./context/LoginContext.jsx";
 import PokemonDetailsPage from "./components/shared/PokemonDetails/PokemonDetailsPage.jsx";
+import PokemonEditForm from "./components/shared/PokemonEdition/PokemonEditiForm.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="registrationForm" element={<RegistrationForm />} />
             <Route path="loginForm" element={<LoginForm />} />
             <Route path="pokemon/:name" element={<PokemonDetailsPage />} />
+            <Route path="pokemon/edit/:name" element={<PokemonEditForm />} />
           </Routes>
         </LoginProvider>
       </BrowserRouter>

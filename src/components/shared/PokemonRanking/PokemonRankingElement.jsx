@@ -23,7 +23,7 @@ const PokemonRankingElement = ({
   return (
     <div
       className={clsx(
-        "relative flex  flex-wrap items-center justify-start shadow-md py-2 px-10 rounded-lg gap-x-5",
+        "relative flex-wrap shadow-md py-2 px-5 rounded-lg gap-x-10",
         theme === "light"
           ? "bg-pokemon-card shadow-pokemon-card-shadow"
           : "bg-dark-pokemon-card shadow-dark-pokemon-card-shadow",
@@ -32,14 +32,14 @@ const PokemonRankingElement = ({
         id === 3 && "border-solid border-2 border-brown-statistic"
       )}
     >
-      <div className="flex items-center">
+      <div className="flex items-center justify-center ">
         <RankingNumber id={id} />
-        <div className="flex justify-center mx-5">
-          <img className="w-32" src={image} alt={name} />
+        <div className="flex justify-center mx-1 lg:mx-5">
+          <img className={clsx(" w-24 lg:w-32")} src={image} alt={name} />
         </div>
         <NameContainer parametr={name} />
       </div>
-      <div className="mt-5 flex gap-x-5">
+      <div className="mt-5 flex gap-x-1 lg:gap-x-10 justify-center">
         <AbilityContainer parametr={height}>Height</AbilityContainer>
         <AbilityContainer parametr={weight}>Weight</AbilityContainer>
         <AbilityContainer parametr={baseExperience}>

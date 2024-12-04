@@ -19,10 +19,10 @@ const useFetchPokemonList = (url) => {
         }
         const result = await response.json();
         
-        const afterFightResponse = await fetch(
-          `http://localhost:3000/pokemonAfterFight`
+        const updatedResponse = await fetch(
+          `http://localhost:3000/updatedPokemons`
         );
-        const afterFightResult = await afterFightResponse.json();
+        const updatedResult = await updatedResponse.json();
 
         if (result.results) {
           const pokemonDetailsPromises = result.results.map(async (pokemon) => {
@@ -34,32 +34,34 @@ const useFetchPokemonList = (url) => {
 
           const pokemonDetails = await Promise.all(pokemonDetailsPromises);
 
-          const updatedPokemons = pokemonDetails.map((pokemon) => {
-            const updatedPoke = afterFightResult.find(
-              (afterFightPoke) => afterFightPoke.name === pokemon.name
+          const newUpdatedPokemons = pokemonDetails.map((pokemon) => {
+            const newUpdatedPoke = updatedResult.find(
+              (updatedPoke) => updatedPoke.name === pokemon.name
             );
-            return updatedPoke || pokemon;
+            return newUpdatedPoke || pokemon;
           });
           {
-            isLoggedIn ? setData(updatedPokemons) : setData(pokemonDetails);
+            isLoggedIn ? setData(newUpdatedPokemons) : setData(pokemonDetails);
           }
         } else if (!result.results && result.length > 0) {
-          const updatedPokemons = result.map((pokemon) => {
-            const updatedPoke = afterFightResult.find(
-              (afterFightPoke) => afterFightPoke.name === pokemon.name
+          const newUpdatedPokemons = result.map((pokemon) => {
+            const newUpdatedPoke = updatedResult.find(
+              (updatedPoke) => updatedPoke.name === pokemon.name
             );
-            return updatedPoke || pokemon;
+            return newUpdatedPoke || pokemon;
           });
           {
-            isLoggedIn ? setData(updatedPokemons) : setData(result);
+            isLoggedIn ? setData(newUpdatedPokemons) : setData(result);
           }
         } else if (!Array.isArray(result) && result.name) {
-          const updatedPoke = afterFightResult.find(
-            (afterFightPoke) => afterFightPoke.name === result.name
+          const newUpdatedPoke = updatedResult.find(
+            (updatedPoke) => updatedPoke.name === result.name
           );
           {
-            isLoggedIn ? setData(updatedPoke || result) : setData(result);
+            isLoggedIn ? setData(newUpdatedPoke || result) : setData(result);
           }
+        } else if( result.length === 0) {
+          setData(result)
         }
       } catch (err) {
         setError(err.message);

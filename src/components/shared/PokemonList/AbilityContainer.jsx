@@ -8,7 +8,7 @@ const AbilityContainer = ({ children, parametr }) => {
   return (
     <p
       className={clsx(
-        "text-xl text-center font-itim mb-2",
+        "text-sm lg:text-lg xl:text-xl text-center font-itim mb-2",
         theme === "light"
           ? "text-pokemon-card-details"
           : "text-dark-second-text-color"

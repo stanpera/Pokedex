@@ -7,10 +7,6 @@ import { faSort } from "@fortawesome/free-solid-svg-icons";
 const PokemonRankingSelect = ({ onChange, onClick }) => {
   const { theme } = useContext(ThemeContext);
 
-  const handleInputChange = (event) => {
-    setSearch(event.target.value);
-  };
-
   return (
     <div
       className={clsx(
@@ -22,7 +18,7 @@ const PokemonRankingSelect = ({ onChange, onClick }) => {
     >
       <select
         className={clsx(
-          "h-10  w-1/6 rounded p-1  placeholder:text-lg text-center text-xl mr-3",
+          "h-10  rounded p-1  placeholder:text-lg text-center text-base lg:text-xl mr-3",
           theme === "light"
             ? "bg-searching-pokemon-input text-white"
             : "bg-dark-searching-pokemon-input text-dark-main-text-color"

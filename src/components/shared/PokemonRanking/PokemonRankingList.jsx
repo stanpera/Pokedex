@@ -9,7 +9,7 @@ const PokemonRankingList = () => {
   const [sortOption, setSortOption] = useState("win");
 
   const { data, loading, error } = useFetchPokemonList(
-    "http://localhost:3000/pokemonAfterFight"
+    "http://localhost:3000/updatedPokemons"
   );
   console.log(descending);
   const toggleSortDirection = () => {
@@ -53,8 +53,8 @@ const PokemonRankingList = () => {
         onChange={handleSelectChange}
         onClick={toggleSortDirection}
       />
-      <div className="relative flex flex-col items-center ">
-        <div className="flex flex-col justify-center gap-y-10 gap-x-12 m-10">
+      <div className="relative flex flex-col items-center">
+        <div className="flex flex-col w-6/8 md:w-3/5 justify-center gap-y-10 gap-x-12 m-10 ">
           {filteredData.map((pokemon, index) => (
             <PokemonRankingElement
               key={pokemon.id}

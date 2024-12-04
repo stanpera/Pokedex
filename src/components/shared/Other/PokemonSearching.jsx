@@ -20,7 +20,7 @@ const PokemonSearching = ({ search, setSearch }) => {
     >
       <input
         className={clsx(
-          "rounded p-1 h-10 w-72 placeholder:text-lg text-center text-xl",
+          "rounded p-1 h-10 w-72 placeholder:text-lg text-center text-base lg:text-lg xl:text-xl",
           theme === "light"
             ? "bg-searching-pokemon-input placeholder:text-white"
             : "bg-dark-searching-pokemon-input text-dark-main-text-color placeholder:text-dark-second-text-color"

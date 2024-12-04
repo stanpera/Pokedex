@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../context/LoginContext";
 import logoPokedex from "../../icons/logoPokedex.png";
@@ -8,9 +8,11 @@ import UserLogo from "../shared/NavigationElements/UserLogo";
 import { ThemeContext } from "../../context/ThemeContext";
 import { useSnackbar } from "notistack";
 import clsx from "clsx";
+import NavBarIcon from "../shared/NavigationElements/NavBarIcon";
 
 const Navigation = () => {
   const { isLoggedIn, handleSubmit, name } = useContext(LoginContext);
+  const [navBar, setNavBar] = useState(false);
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
   const { enqueueSnackbar } = useSnackbar();
@@ -25,6 +27,10 @@ const Navigation = () => {
     }
   };
 
+  const handleNavBar = () => {
+    setNavBar((prev) => !prev);
+  };
+
   return (
     <nav
       className={clsx(
@@ -34,9 +40,9 @@ const Navigation = () => {
           : "bg-dark-navigation-gradient shadow-dark-black"
       )}
     >
-      <div className="flex items-center">
+      <div className="flex items-start lg:items-center">
         <Link to="/">
-          <img src={logoPokedex} alt="Pokedex Logo" className="h-20" />
+          <img src={logoPokedex} alt="Pokedex Logo" className={clsx("md:h-16 h-10")} />
         </Link>
       </div>
       <div>
@@ -44,47 +50,40 @@ const Navigation = () => {
           {isLoggedIn && <UserLogo>{name}</UserLogo>}
           <ThemeSwitcher />
         </div>
-        <div className="flex space-x-4 max-sm:flex-col">
-          <Button
-            color="menu"
-            size="medium"
-            onClick={() => handleButtonClick("/favourites")}
-          >
+        <NavBarIcon onClick={handleNavBar} />
+        <div
+          className={clsx(
+            "flex flex-col space-y-2 lg:flex-row lg:space-x-4 lg:space-y-0",
+            {
+              "hidden lg:flex": !navBar, // Ukryj, jeśli navBar = false w mobilnym, ale widoczny na desktopie
+              flex: navBar, // Pokaż menu, jeśli navBar = true w mobilnym
+            }
+          )}
+        >
+          <Button color="menu" onClick={() => handleButtonClick("/favourites")}>
             ULUBIONE
           </Button>
-          <Button
-            color="menu"
-            size="medium"
-            onClick={() => handleButtonClick("/arena")}
-          >
+          <Button color="menu" onClick={() => handleButtonClick("/arena")}>
             ARENA
           </Button>
-          <Button
-            color="menu"
-            size="medium"
-            onClick={() => handleButtonClick("/ranking")}
-          >
+          <Button color="menu" onClick={() => handleButtonClick("/ranking")}>
             RANKING
           </Button>
-          <Button
-            color="menu"
-            size="medium"
-            onClick={() => handleButtonClick("/edition")}
-          >
+          <Button color="menu" onClick={() => handleButtonClick("/edition")}>
             EDYCJA
           </Button>
           {!isLoggedIn && (
-            <Button to="loginForm" color="login" size="medium">
+            <Button to="loginForm" color="login">
               ZALOGUJ
             </Button>
           )}
           {!isLoggedIn && (
-            <Button to="registrationForm" color="login" size="medium">
+            <Button to="registrationForm" color="login">
               ZAREJESTRUJ SIĘ
             </Button>
           )}
           {isLoggedIn && (
-            <Button color="logout" size="medium" onClick={handleSubmit}>
+            <Button color="logout" onClick={handleSubmit}>
               WYLOGUJ
             </Button>
           )}

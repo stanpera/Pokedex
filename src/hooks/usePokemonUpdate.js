@@ -47,12 +47,21 @@ const usePokemonUpdate = () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         });
-        enqueueSnackbar(
-          `Zaktualizowano statystyki walk ${data.name.toUpperCase()}.`,
-          {
-            variant: "success",
-          }
-        );
+        if (data.isCustomPokemon) {
+          enqueueSnackbar(
+            `Stworzono nowego pokemona ${data.name.toUpperCase()}.`,
+            {
+              variant: "success",
+            }
+          );
+        } else {
+          enqueueSnackbar(
+            `Zaktualizowano statystyki walk ${data.name.toUpperCase()}.`,
+            {
+              variant: "success",
+            }
+          );
+        }
       }
     } catch (error) {
       enqueueSnackbar(

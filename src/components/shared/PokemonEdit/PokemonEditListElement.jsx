@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { ThemeContext } from "../../../context/ThemeContext";
 import { useNavigate } from "react-router-dom";
 
-const PokemonEditionListElement = ({ name, id, image, win }) => {
+const PokemonEditListElement = ({ name, id, image }) => {
   const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
 
@@ -25,14 +25,15 @@ const PokemonEditionListElement = ({ name, id, image, win }) => {
       <div className="flex items-center justify-between ">
         <p className="text-2xl xl:text-3xl font-bangers mr-2">{id}.</p>
         <NameContainer parametr={name} />
-        {win > 0 && <p>{win}</p>}
         <div className="flex justify-center mx-1 lg:mx-5">
           <img className={clsx(" w-16 lg:w-28")} src={image} alt={name} />
         </div>
-        <Button color="login" onClick={handlePokemonEdit}>EDYTUJ</Button>
+        <Button color="login" onClick={handlePokemonEdit}>
+          EDYTUJ
+        </Button>
       </div>
     </div>
   );
 };
 
-export default PokemonEditionListElement;
+export default PokemonEditListElement;

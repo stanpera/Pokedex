@@ -7,6 +7,7 @@ import RegistrationInput from "../Registration/RegistrationInput";
 import Button from "../Other/Button";
 import usePokemonUpdate from "../../../hooks/usePokemonUpdate";
 import clsx from "clsx";
+import { useNavigate } from "react-router-dom";
 
 const schema = z.object({
   height: z.string().min(1, { message: "Wartość musi wynosić przynajmniej 1" }),
@@ -16,7 +17,7 @@ const schema = z.object({
 
 const PokemonEditForm = () => {
   const { name } = useParams();
-  // const [updatedData, setupdatedData] = useState({ id: "dupa", name: "dupa" });
+  const navigate = useNavigate();
   const { data, loading, error } = useFetchPokemonList(
     `https://pokeapi.co/api/v2/pokemon/${name}`
   );
@@ -47,6 +48,7 @@ const PokemonEditForm = () => {
       lost: data.lost >= 0 ? data.lost : null,
     };
     await manageUpdate(newData);
+    navigate("/");
   };
 
   if (loading)
@@ -131,7 +133,3 @@ const PokemonEditForm = () => {
 };
 
 export default PokemonEditForm;
-
-
-
-

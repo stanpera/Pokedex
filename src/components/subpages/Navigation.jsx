@@ -69,7 +69,7 @@ const Navigation = () => {
           <Button color="menu" onClick={() => handleButtonClick("/ranking")}>
             RANKING
           </Button>
-          <Button color="menu" onClick={() => handleButtonClick("/edition")}>
+          <Button color="menu" onClick={() => handleButtonClick("/edit")}>
             EDYCJA
           </Button>
           {!isLoggedIn && (

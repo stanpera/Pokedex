@@ -18,7 +18,7 @@ const useFetchPokemonList = (url) => {
           throw new Error("Wystąpił błąd podczas pobierania danych.");
         }
         const result = await response.json();
-        
+
         const updatedResponse = await fetch(
           `http://localhost:3000/updatedPokemons`
         );
@@ -36,7 +36,11 @@ const useFetchPokemonList = (url) => {
 
           const newUpdatedPokemons = pokemonDetails.map((pokemon) => {
             const newUpdatedPoke = updatedResult.find(
-              (updatedPoke) => updatedPoke.name === pokemon.name
+              (updatedPoke) =>
+                updatedPoke.name === pokemon.name ||
+                updatedPoke.image ===
+                  pokemon.sprites?.other["official-artwork"]
+                    .front_default
             );
             return newUpdatedPoke || pokemon;
           });
@@ -60,8 +64,8 @@ const useFetchPokemonList = (url) => {
           {
             isLoggedIn ? setData(newUpdatedPoke || result) : setData(result);
           }
-        } else if( result.length === 0) {
-          setData(result)
+        } else if (result.length === 0) {
+          setData(result);
         }
       } catch (err) {
         setError(err.message);

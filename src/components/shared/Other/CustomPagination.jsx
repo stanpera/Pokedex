@@ -34,3 +34,6 @@ const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
 };
 
 export default CustomPagination;
+
+
+

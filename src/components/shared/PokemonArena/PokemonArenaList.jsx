@@ -4,8 +4,8 @@ import PokemonArenaCard from "./PokemonArenaCard";
 import Notification from "../Other/Notification";
 import Loading from "../Other/Loading";
 import logoPokedex from "../../../icons/logoPokedex.png";
-import FightSkullIcon from "../../../icons/FightSkullIcon";
-import ExitArenaIcon from "../../../icons/ExitArenaIcon";
+import FightSkullIcon from "./FightSkullIcon";
+import ExitArenaIcon from "./ExitArenaIcon";
 import { useNavigate } from "react-router-dom";
 import PokemonArenaResults from "./PokemonArenaResults";
 import usePokemonUpdate from "../../../hooks/usePokemonUpdate";
@@ -117,7 +117,7 @@ const PokemonArenaList = () => {
         },
       ];
     }
-    return [pokemon1, pokemon2]; // Brak zmian w przypadku remisu
+    return [pokemon1, pokemon2];
   };
 
   const handleFight = () => {
@@ -167,7 +167,7 @@ const PokemonArenaList = () => {
 
   return (
     <div className="relative flex flex-col items-center mt-10">
-      <div className="flex flex-col sm:flex-row w-4/5 items-center justify-center mb-10">
+      <div className="flex flex-col sm:flex-row w-10/12 lg:w-3/4  items-center justify-center mb-10">
         <PokemonArenaCard
           id={pokemonData[0].id}
           name={pokemonData[0].name}

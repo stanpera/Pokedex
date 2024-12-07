@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLandmark } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { ThemeContext } from "../../../context/ThemeContext";
 
 const ExitArenaIcon = ({ onClick, disabled = false }) => {
   const { theme } = useContext(ThemeContext);

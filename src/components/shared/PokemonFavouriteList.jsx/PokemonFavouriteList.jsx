@@ -5,19 +5,21 @@ import CustomPagination from "../Other/CustomPagination";
 import PokemonSearching from "../Other/PokemonSearching";
 import Notification from "../Other/Notification";
 import Loading from "../Other/Loading";
+import usePageNumber from "../../../hooks/usePageNumber";
 
 const PokemonFavouriteList = () => {
   const itemsPerPage = 15;
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
   const offset = (currentPage - 1) * itemsPerPage;
-
-  const urlFavourite = "http://localhost:3000/favouritePokemons";
+  const { totalAmountPages } = usePageNumber({
+    jsonUrl: "http://localhost:3000/favouritePokemons",
+  });
+  const totalPages = totalAmountPages;
 
   const { data, loading, error } = useFetchPokemonList(
-    `${urlFavourite}?_start=${offset}&_limit=${itemsPerPage}`
+    `http://localhost:3000/favouritePokemons?_start=${offset}&_limit=${itemsPerPage}`
   );
 
   useEffect(() => {
@@ -26,22 +28,8 @@ const PokemonFavouriteList = () => {
         pokemon.name.toLowerCase().includes(search.toLowerCase())
       );
       setFilteredData(filteredPokemons);
-
-      fetch("http://localhost:3000/favouritePokemons", {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          const totalItems = data.length;
-          const pages = Math.ceil(totalItems / itemsPerPage);
-          setTotalPages(pages);
-        })
-        .catch((error) => console.error("Error fetching data:", error));
     }
-  }, [data, search, urlFavourite]);
+  }, [data, search]);
 
   if (loading) {
     return <Loading />;
@@ -53,8 +41,7 @@ const PokemonFavouriteList = () => {
       <PokemonSearching search={search} setSearch={setSearch} />
       <div className="relative flex flex-col items-center mt-10">
         <div className="flex w-4/5 flex-wrap justify-center gap-y-10 gap-x-12 mb-10">
-          {filteredData.length === 0 &&
-          urlFavourite === "http://localhost:3000/favouritePokemons" ? (
+          {filteredData.length === 0 ? (
             <Notification
               variant="primary"
               message="Przejdź do strony głównej i dodaj pokemony do ulubionych"

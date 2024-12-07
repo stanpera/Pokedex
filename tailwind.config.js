@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        backgroundLight: "#B9DEFF",
-        backgroundDark: "#313131",
+        "background-light": "#B9DEFF",
+        "background-dark": "#313131",
         "main-text-color": "#272B5A",
         "dark-main-text-color": "#E8D8B7",
         "navigation-button-shadow": "#15a2c2d0",
@@ -16,9 +16,9 @@ export default {
         "dark-pokemon-card-shadow": "#222222",
         "pokemon-card-details": "#6a788c",
         "dark-second-text-color": "#d5b77b",
-        errorText: "#e21313",
-        switcherColor: "#D1D5DB",
-        switcherShadow: "#a8acb1",
+        "error-text": "#e21313",
+        "switcher-color": "#D1D5DB",
+        "switcher-shadow": "#a8acb1",
         "dark-red": "#891616",
         "dark-second-red": "#AE1B1B",
         "dark-red-shadow": "#771414",

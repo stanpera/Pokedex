@@ -5,19 +5,25 @@ import CustomPagination from "../Other/CustomPagination";
 import PokemonSearching from "../Other/PokemonSearching";
 import Notification from "../Other/Notification";
 import Loading from "../Other/Loading";
+import usePageNumber from "../../../hooks/usePageNumber";
 
 const PokemonList = () => {
   const itemsPerPage = 15;
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
-  const totalPages = 10;
   const offset = (currentPage - 1) * itemsPerPage;
+  const createdPokemonOffset = (currentPage - 11) * itemsPerPage;
   const [filteredData, setFilteredData] = useState([]);
-
-  const urlApi = "https://pokeapi.co/api/v2/pokemon";
-  const { data, loading, error } = useFetchPokemonList(
-    `${urlApi}?offset=${offset}&limit=${itemsPerPage}`
-  );
+  const { totalAmountPages } = usePageNumber({
+    jsonUrl: `http://localhost:3000/updatedPokemons?isCustomPokemon_gte=1`,
+    apiUrl: "https://pokeapi.co/api/v2/pokemon?offset=0&limit=150",
+  });
+  const totalPages = totalAmountPages;
+  const url =
+    offset <= 135
+      ? `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${itemsPerPage}`
+      : `http://localhost:3000/updatedPokemons?isCustomPokemon_gte=1&_start=0&_limit=${itemsPerPage}`;
+  const { data, loading, error } = useFetchPokemonList(url);
 
   useEffect(() => {
     if (data) {
@@ -60,20 +66,14 @@ const PokemonList = () => {
             />
           ))}
         </div>
-        {filteredData.length > 2 && (
-          <CustomPagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={setCurrentPage}
-          />
-        )}
+        <CustomPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       </div>
     </>
   );
 };
 
 export default PokemonList;
-
-
-
-

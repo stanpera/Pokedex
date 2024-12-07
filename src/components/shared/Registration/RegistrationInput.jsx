@@ -33,7 +33,7 @@ const RegistrationInput = ({
           placeholder={placeholder}
           className={clsx(
             "w-full text-center mr-3 py-1 text-green rounded-md text-lg",
-            error ? "border-solid border-2 border-errorText" : "border-none",
+            error ? "border-solid border-2 border-error-text" : "border-none",
             theme === "light"
               ? "bg-form-input"
               : "bg-dark-form-input text-dark-black"

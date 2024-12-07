@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import PokemonDetailsCard from "./PokemonDetailsCard";
 import useFetchPokemonList from "../../../hooks/useFetchPokemonList";
+import Notification from "../Other/Notification";
+import Loading from "../Other/Loading";
 
 const PokemonDetailsPage = () => {
   const { name } = useParams();
@@ -8,18 +10,12 @@ const PokemonDetailsPage = () => {
     `https://pokeapi.co/api/v2/pokemon/${name}`
   );
 
-  if (loading)
-    return (
-      <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        Trwa pobieranie danych...
-      </p>
-    );
-  if (error)
-    return (
-      <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        {error}
-      </p>
-    );
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) {
+    return <Notification variant="secondary" message={error} />;
+  }
 
   return (
     <div className="flex justify-center">

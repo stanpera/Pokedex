@@ -1,4 +1,4 @@
-import clsx from "clsx"; // Pamiętaj, aby zainstalować clsx: npm install clsx
+import clsx from "clsx"; 
 import { ThemeContext } from "../../../context/ThemeContext";
 import { useContext } from "react";
 

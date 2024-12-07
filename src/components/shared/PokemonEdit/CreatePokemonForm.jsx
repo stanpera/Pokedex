@@ -46,8 +46,8 @@ const CreatePokemonForm = () => {
   });
 
   useEffect(() => {
-    setIsLeftDisabled(offset === 150); 
-    setIsRightDisabled(data?.length < 2); 
+    setIsLeftDisabled(offset === 150);
+    setIsRightDisabled(data?.length < 2);
   }, [offset, data]);
 
   const handleImageIncrease = () => {
@@ -79,7 +79,7 @@ const CreatePokemonForm = () => {
         ability: formData.ability,
         win: null,
         lost: null,
-        isCustomPokemon: true,
+        isCustomPokemon: Number(1),
       };
       await manageUpdate(newData);
       navigate("/");
@@ -93,7 +93,6 @@ const CreatePokemonForm = () => {
       </p>
     );
 
-  console.log("DATAGGGGGG", data);
   return (
     <main className="flex flex-col items-center mt-10 mb-10 mx-5">
       <h3 className={clsx("text-2xl lg:text-3xl mb-4 font-bangers")}>

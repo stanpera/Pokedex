@@ -12,7 +12,7 @@ const ArenaSkullIcon = ({ isArena, onClick }) => {
       <FontAwesomeIcon
         icon={faSkullCrossbones}
         className={clsx(
-          `text-3xl`,
+          `text-2xl lg:text-3xl`,
           isArena
             ? theme === "light"
               ? "text-main-red"

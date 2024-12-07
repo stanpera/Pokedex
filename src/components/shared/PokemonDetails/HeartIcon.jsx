@@ -12,7 +12,7 @@ const HeartIcon = ({ isFavorite, onClick }) => {
       <FontAwesomeIcon
         icon={faHeart}
         className={clsx(
-          "text-3xl",
+          "text-2xl lg:text-3xl",
           isFavorite
             ? theme === "light"
               ? "text-main-red"

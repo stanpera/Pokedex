@@ -52,13 +52,13 @@ const PokemonArenaCard = ({
 
   return (
     <div
-      ref={cardRef} // Przypisanie ref do kontenera
+      ref={cardRef} 
       className={clsx(
-        "relative flex flex-col items-center shadow-md py-5 lg:py-10 rounded-lg w-[240px] lg:w-[360px]",
+        "relative flex flex-col items-center shadow-md py-5 lg:py-10 rounded-lg h-[360px] lg:h-[510px] w-[240px] lg:w-[360px]",
         theme === "light"
           ? "bg-pokemon-card shadow-pokemon-card-shadow"
           : "bg-dark-pokemon-card shadow-dark-pokemon-card-shadow",
-        name === null && "justify-center h-[510px]",
+        name === null && "justify-center ",
         name !== null &&
           "hover:shadow-lg transform transition-all duration-200 ease-in-out cursor-pointer hover:scale-105",
         name === null && "opacity-50",
@@ -69,7 +69,7 @@ const PokemonArenaCard = ({
       {(win > 0 || lost > 0) && (
         <div
           className={clsx(
-            "text-sm lg:text-lg xl:text-xl font-itim absolute top-0 left-0 p-2  rounded-tl-md rounded-br-md",
+            "text-sm lg:text-lg xl:text-xl font-itim absolute top-0 left-0 md:p-2 p-1  rounded-tl-md rounded-br-md",
             theme === "light" ? "bg-main-gray font-bold" : "bg-dark-black"
           )}
         >

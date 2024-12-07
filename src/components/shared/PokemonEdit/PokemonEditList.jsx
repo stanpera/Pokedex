@@ -6,17 +6,24 @@ import Loading from "../Other/Loading";
 import Notification from "../Other/Notification";
 import Button from "../Other/Button";
 import { useNavigate } from "react-router-dom";
+import usePageNumber from "../../../hooks/usePageNumber";
 
 const PokemonEditList = () => {
   const itemsPerPage = 15;
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10;
   const offset = (currentPage - 1) * itemsPerPage;
+  const createdPokemonOffset = (currentPage - 11) * itemsPerPage;
   const navigate = useNavigate();
-  const urlApi = "https://pokeapi.co/api/v2/pokemon";
-  const { data, loading, error } = useFetchPokemonList(
-    `${urlApi}?offset=${offset}&limit=${itemsPerPage}`
-  );
+  const { totalAmountPages } = usePageNumber({
+    jsonUrl: `http://localhost:3000/updatedPokemons?isCustomPokemon_gte=1&_start=0&_limit=10`,
+    apiUrl: "https://pokeapi.co/api/v2/pokemon?offset=0&limit=150",
+  });
+  const totalPages = totalAmountPages;
+  const url =
+    offset <= 149
+      ? `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${itemsPerPage}`
+      : `http://localhost:3000/updatedPokemons?isCustomPokemon_gte=1&_start=${createdPokemonOffset}&_limit=${itemsPerPage}`;
+  const { data, loading, error } = useFetchPokemonList(url);
 
   const handlePokemonCreate = () => {
     navigate(`/createPokemonForm`);

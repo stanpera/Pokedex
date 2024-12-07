@@ -2,6 +2,18 @@ import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { LoginContext } from "../context/LoginContext";
 
+const mapUpdatedPokemons = (originalList, updatedList) => {
+  return originalList.map((pokemon) => {
+    const updatedPoke = updatedList.find(
+      (updatedPoke) =>
+        updatedPoke.name.toLowerCase() === pokemon.name.toLowerCase() ||
+        updatedPoke.image ===
+          pokemon.sprites?.other["official-artwork"].front_default
+    );
+    return updatedPoke || pokemon;
+  });
+};
+
 const useFetchPokemonList = (url) => {
   const { isLoggedIn } = useContext(LoginContext);
   const [data, setData] = useState(null);
@@ -11,7 +23,7 @@ const useFetchPokemonList = (url) => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      setError(null);
+      setError(false);
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -34,32 +46,21 @@ const useFetchPokemonList = (url) => {
 
           const pokemonDetails = await Promise.all(pokemonDetailsPromises);
 
-          const newUpdatedPokemons = pokemonDetails.map((pokemon) => {
-            const newUpdatedPoke = updatedResult.find(
-              (updatedPoke) =>
-                updatedPoke.name === pokemon.name ||
-                updatedPoke.image ===
-                  pokemon.sprites?.other["official-artwork"]
-                    .front_default
-            );
-            return newUpdatedPoke || pokemon;
-          });
+          const newUpdatedPokemons = mapUpdatedPokemons(
+            pokemonDetails,
+            updatedResult
+          );
+
           {
             isLoggedIn ? setData(newUpdatedPokemons) : setData(pokemonDetails);
           }
         } else if (!result.results && result.length > 0) {
-          const newUpdatedPokemons = result.map((pokemon) => {
-            const newUpdatedPoke = updatedResult.find(
-              (updatedPoke) => updatedPoke.name === pokemon.name
-            );
-            return newUpdatedPoke || pokemon;
-          });
-          {
-            isLoggedIn ? setData(newUpdatedPokemons) : setData(result);
-          }
+          const newUpdatedPokemons = mapUpdatedPokemons(result, updatedResult);
+          isLoggedIn ? setData(newUpdatedPokemons) : setData(result);
         } else if (!Array.isArray(result) && result.name) {
           const newUpdatedPoke = updatedResult.find(
-            (updatedPoke) => updatedPoke.name === result.name
+            (updatedPoke) =>
+              updatedPoke.name.toLowerCase() === result.name.toLowerCase()
           );
           {
             isLoggedIn ? setData(newUpdatedPoke || result) : setData(result);
@@ -68,7 +69,7 @@ const useFetchPokemonList = (url) => {
           setData(result);
         }
       } catch (err) {
-        setError(err.message);
+        setError(true);
       } finally {
         setLoading(false);
       }

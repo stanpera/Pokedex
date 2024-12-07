@@ -51,23 +51,23 @@ const PokemonDetailsCard = ({
   return (
     <div
       className={clsx(
-        "flex relative justify-between items-center rounded-lg mt-20 p-10 bg-red-500 w-3/5 gap-x-16cursor-pointer",
+        "flex relative justify-between items-center rounded-lg mt-32 p-2 bg-red-500 w-11/12 sm:w-4/6 lg:w-3/5 xl:w-[800px] gap-x-2 cursor-pointer",
         theme === "light"
           ? "bg-pokemon-card shadow-pokemon-card-shadow"
           : "bg-dark-pokemon-card shadow-dark-pokemon-card-shadow"
       )}
     >
       {isLoggedIn && (
-        <div className="flex gap-x-5 absolute top-6 right-6">
+        <div className="flex gap-x-5 absolute top-3 right-3 lg:top-6 lg:right-6">
           <HeartIcon isFavorite={isFavorite} onClick={handleFavourites} />
           <ArenaSkullIcon isArena={isArena} onClick={handleArena} />
         </div>
       )}
       <div>
-        <img src={image} alt={name} className="w-96 mt-4" />
+        <img src={image} alt={name} className="w-40 sm:w-48 lg:w-80" />
       </div>
-      <div className="flex flex-col items-center w-2/4">
-        <h3 className="text-4xl capitalize mb-10 font-bangers">{name}</h3>
+      <div className="flex flex-col items-center w-3/4 mt-12">
+        <h3 className="text-3xl capitalize mb-4 font-bangers">{name}</h3>
         <div className="flex w-full justify-around">
           <div>
             <AbilityContainer parametr={height}>Height</AbilityContainer>

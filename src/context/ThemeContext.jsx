@@ -7,7 +7,6 @@ const ThemeProvider = ({ children }) => {
     () => localStorage.getItem("theme") || "light"
   );
 
-  // Zapisuj zmiany w theme do localStorage
   useEffect(() => {
     localStorage.setItem("theme", theme);
   }, [theme]);

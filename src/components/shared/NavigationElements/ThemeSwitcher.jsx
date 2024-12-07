@@ -16,7 +16,7 @@ const ThemeSwitcher = () => {
         className={clsx(
           "relative inline-flex items-center justify-center w-8 h-4 md:w-10 md:h-5 rounded-full transition-colors border-0 focus:ring-0 shadow-sm cursor-pointer",
           theme === "light"
-            ? "bg-switcherColor shadow-switcherShadow"
+            ? "bg-switcher-color shadow-switcher-shadow"
             : "bg-dark-second-text-color shadow-dark-red-shadow"
         )}
       >

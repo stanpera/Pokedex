@@ -2,159 +2,12 @@
   "users": [
     {
       "id": "668e",
-      "name": "sadsda",
-      "email": "stanislawpera94@gmail.com",
+      "name": "stan",
+      "email": "stanp11@test.com",
       "password": "Ss1#dsadsas"
-    },
-    {
-      "id": "72fc",
-      "name": "aaa",
-      "email": "stanislara94@gmail.com",
-      "password": "as!1SDsdadsada"
-    },
-    {
-      "id": "5cd9",
-      "name": "sasd",
-      "email": "asd@gd.pl",
-      "password": "SDsa1$#sdasda"
     }
   ],
   "favouritePokemons": [
-    {
-      "id": "charmander",
-      "name": "charmander",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
-      "height": 6,
-      "weight": 85,
-      "baseExperience": 62,
-      "ability": "blaze"
-    },
-    {
-      "id": "charmeleon",
-      "name": "charmeleon",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png",
-      "height": 11,
-      "weight": 190,
-      "baseExperience": 142,
-      "ability": "blaze"
-    },
-    {
-      "id": "metapod",
-      "name": "metapod",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/11.png",
-      "height": 7,
-      "weight": 99,
-      "baseExperience": 72,
-      "ability": "shed-skin"
-    },
-    {
-      "id": "charizard",
-      "name": "charizard",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
-      "height": 17,
-      "weight": 905,
-      "baseExperience": 267,
-      "ability": "blaze"
-    },
-    {
-      "id": "caterpie",
-      "name": "caterpie",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10.png",
-      "height": 3,
-      "weight": 29,
-      "baseExperience": 39,
-      "ability": "shield-dust"
-    },
-    {
-      "id": "wartortle",
-      "name": "wartortle",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/8.png",
-      "height": 10,
-      "weight": 225,
-      "baseExperience": 142,
-      "ability": "torrent"
-    },
-    {
-      "id": "parasect",
-      "name": "parasect",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/47.png",
-      "height": 10,
-      "weight": 295,
-      "baseExperience": 142,
-      "ability": "effect-spore"
-    },
-    {
-      "id": "poliwhirl",
-      "name": "poliwhirl",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/61.png",
-      "height": 10,
-      "weight": 200,
-      "baseExperience": 135,
-      "ability": "water-absorb"
-    },
-    {
-      "id": "porygon",
-      "name": "porygon",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/137.png",
-      "height": 8,
-      "weight": 365,
-      "baseExperience": 79,
-      "ability": "trace"
-    },
-    {
-      "id": "machamp",
-      "name": "machamp",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/68.png",
-      "height": 16,
-      "weight": 1300,
-      "baseExperience": 253,
-      "ability": "guts"
-    },
-    {
-      "id": "pidgeotto",
-      "name": "pidgeotto",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/17.png",
-      "height": 11,
-      "weight": 300,
-      "baseExperience": 122,
-      "ability": "keen-eye"
-    },
-    {
-      "id": "ekans",
-      "name": "ekans",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/23.png",
-      "height": 20,
-      "weight": 69,
-      "baseExperience": 58,
-      "ability": "intimidate"
-    },
-    {
-      "id": "weedle",
-      "name": "weedle",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/13.png",
-      "height": 3,
-      "weight": 32,
-      "baseExperience": 39,
-      "ability": "shield-dust"
-    },
-    {
-      "id": "squirtle",
-      "name": "squirtle",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
-      "height": 5,
-      "weight": 90,
-      "baseExperience": 63,
-      "ability": "torrent"
-    },
-    {
-      "id": "beedrill",
-      "name": "beedrill",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/15.png",
-      "height": 10,
-      "weight": 295,
-      "baseExperience": 178,
-      "ability": "swarm"
-    },
     {
       "id": "bulbasaur",
       "name": "bulbasaur",
@@ -165,13 +18,13 @@
       "ability": "overgrow"
     },
     {
-      "id": "nidoran-m",
-      "name": "nidoran-m",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/32.png",
-      "height": 5,
-      "weight": 90,
-      "baseExperience": 55,
-      "ability": "poison-point"
+      "id": "venusaur",
+      "name": "venusaur",
+      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
+      "height": 20,
+      "weight": 1000,
+      "baseExperience": 263,
+      "ability": "overgrow"
     }
   ],
   "arena": [],
@@ -180,167 +33,35 @@
       "id": "bulbasaur",
       "name": "bulbasaur",
       "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-      "height": 122212122,
-      "weight": 121212121221,
-      "baseExperience": 122121121222,
+      "height": 7,
+      "weight": 69,
+      "baseExperience": 64,
       "ability": "overgrow",
-      "win": 1,
-      "lost": 7
-    },
-    {
-      "id": "charmander",
-      "name": "charmander",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
-      "height": 6,
-      "weight": 85,
-      "baseExperience": 62,
-      "ability": "blaze",
       "win": 0,
-      "lost": 2
+      "lost": 1
     },
     {
       "id": "venusaur",
       "name": "venusaur",
       "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
-      "baseExperience": 11111111,
-      "height": 11111111,
-      "weight": 111111111,
+      "height": 20,
+      "weight": 1000,
+      "baseExperience": 273,
       "ability": "overgrow",
-      "win": 3,
-      "lost": 0
-    },
-    {
-      "id": "charizard",
-      "name": "charizard",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
-      "height": 17,
-      "weight": 905,
-      "baseExperience": 267,
-      "ability": "blaze",
-      "win": 0,
-      "lost": 1
-    },
-    {
-      "id": "wartortle",
-      "name": "wartortle",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/8.png",
-      "height": 10,
-      "weight": 225,
-      "baseExperience": 142,
-      "ability": "torrent",
-      "win": 0,
-      "lost": 1
-    },
-    {
-      "id": "charmeleon",
-      "name": "charmeleon",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png",
-      "height": 11,
-      "weight": 190,
-      "baseExperience": 142,
-      "ability": "blaze",
-      "win": 0,
-      "lost": 1
-    },
-    {
-      "id": "ivysaur",
-      "name": "ivysaur",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png",
-      "height": 10,
-      "weight": 130,
-      "baseExperience": 162,
-      "ability": "overgrow",
-      "win": 2,
-      "lost": 1
-    },
-    {
-      "id": "butterfree",
-      "name": "butterfree",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/12.png",
-      "height": 11,
-      "weight": 320,
-      "baseExperience": 208,
-      "ability": "compound-eyes",
       "win": 1,
       "lost": 0
     },
     {
-      "id": "kakuna",
-      "name": "kakuna",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/14.png",
-      "height": 6,
-      "weight": 100,
-      "baseExperience": 72,
-      "ability": "shed-skin",
-      "win": 0,
-      "lost": 1
-    },
-    {
-      "id": "beedrill",
-      "name": "beedrill",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/15.png",
-      "height": 10,
-      "weight": 295,
-      "baseExperience": 188,
-      "ability": "swarm",
-      "win": 1,
-      "lost": 0
-    },
-    {
-      "id": "metapod",
-      "name": "metapod",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/11.png",
-      "height": 7,
-      "weight": 99,
-      "baseExperience": 92,
-      "ability": "shed-skin",
-      "win": 2,
-      "lost": 0
-    },
-    {
-      "id": "machamp",
-      "name": "machamp",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/68.png",
-      "baseExperience": "4",
-      "height": "41",
-      "weight": "4",
-      "ability": "guts",
-      "win": null,
-      "lost": 1
-    },
-    {
-      "id": "primeape",
-      "name": "primeape",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/57.png",
-      "baseExperience": "1",
-      "height": "1",
-      "weight": "1",
-      "ability": "vital-spirit",
-      "win": null,
-      "lost": null
-    },
-    {
-      "id": "venonat",
-      "name": "venonat",
-      "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/48.png",
-      "baseExperience": "2",
-      "height": "2",
-      "weight": "2",
-      "ability": "compound-eyes",
-      "win": null,
-      "lost": null
-    },
-    {
-      "id": "UBUDUBU",
-      "name": "UBUDUBU",
+      "id": "MiauMiau",
+      "name": "MiauMiau",
       "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/151.png",
-      "height": 1,
-      "weight": 1,
-      "baseExperience": 1,
-      "ability": "UBUDUBU",
+      "height": 400,
+      "weight": 10000,
+      "baseExperience": 1000,
+      "ability": "chasing",
       "win": null,
       "lost": null,
-      "isCustomPokemon": true
+      "isCustomPokemon": 1
     }
   ]
 }

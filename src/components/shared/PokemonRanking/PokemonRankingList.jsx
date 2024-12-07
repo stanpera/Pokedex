@@ -2,19 +2,22 @@ import { useState, useEffect } from "react";
 import useFetchPokemonList from "../../../hooks/useFetchPokemonList";
 import PokemonRankingElement from "./PokemonRankingElement";
 import PokemonRankingSelect from "./PokemonRankingSelect";
+import Loading from "../Other/Loading";
+import Notification from "../Other/Notification";
 
 const PokemonRankingList = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [descending, setDescending] = useState(true);
   const [sortOption, setSortOption] = useState("win");
-
+  const [pokemonAfterFight, setPokemonAfterFight] = useState([]);
   const { data, loading, error } = useFetchPokemonList(
     "http://localhost:3000/updatedPokemons"
   );
-  console.log(descending);
+
   const toggleSortDirection = () => {
     setDescending((prev) => !prev);
   };
+  
   const sortData = (data, option) => {
     if (descending) {
       const sorted = [...data].sort((a, b) => {
@@ -39,7 +42,13 @@ const PokemonRankingList = () => {
 
   useEffect(() => {
     if (data) {
-      const sortedData = sortData(data, sortOption);
+      setPokemonAfterFight(
+        data.filter(
+          (pokeAfterFight) =>
+            pokeAfterFight.win !== null && pokeAfterFight.lost !== null
+        )
+      );
+      const sortedData = sortData(pokemonAfterFight, sortOption);
       setFilteredData(sortedData);
     }
   }, [data, , sortOption, descending]);
@@ -47,6 +56,12 @@ const PokemonRankingList = () => {
   const handleSelectChange = (e) => {
     setSortOption(e.target.value);
   };
+
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) return <Notification variant="secondery" message={error} />;
+
   return (
     <>
       <PokemonRankingSelect
@@ -54,7 +69,7 @@ const PokemonRankingList = () => {
         onClick={toggleSortDirection}
       />
       <div className="relative flex flex-col items-center">
-        <div className="flex flex-col w-6/8 md:w-3/5 justify-center gap-y-10 gap-x-12 m-10 ">
+        <div className="flex flex-col w-6/8 md:w-3/5 xl:w-[800px] justify-center gap-y-10 gap-x-12 m-10 ">
           {filteredData.map((pokemon, index) => (
             <PokemonRankingElement
               key={pokemon.id}
@@ -76,6 +91,3 @@ const PokemonRankingList = () => {
 };
 
 export default PokemonRankingList;
-
-
-

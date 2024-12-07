@@ -7,7 +7,7 @@ const AppColorWrapper = ({ children }) => {
   return (
     <div
       className={clsx( "min-h-screen flex flex-col items-center overflow-hidden",
-        theme === "light" ? "bg-backgroundLight text-main-text-color" : "bg-backgroundDark text-dark-main-text-color"
+        theme === "light" ? "bg-background-light text-main-text-color" : "bg-background-dark text-dark-main-text-color"
       )}
     >
       {children}

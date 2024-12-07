@@ -42,7 +42,11 @@ const Navigation = () => {
     >
       <div className="flex items-start lg:items-center">
         <Link to="/">
-          <img src={logoPokedex} alt="Pokedex Logo" className={clsx("md:h-16 h-10")} />
+          <img
+            src={logoPokedex}
+            alt="Pokedex Logo"
+            className={clsx("md:h-16 h-10")}
+          />
         </Link>
       </div>
       <div>
@@ -55,8 +59,8 @@ const Navigation = () => {
           className={clsx(
             "flex flex-col space-y-2 lg:flex-row lg:space-x-4 lg:space-y-0",
             {
-              "hidden lg:flex": !navBar, // Ukryj, jeśli navBar = false w mobilnym, ale widoczny na desktopie
-              flex: navBar, // Pokaż menu, jeśli navBar = true w mobilnym
+              "hidden lg:flex": !navBar,
+              flex: navBar,
             }
           )}
         >

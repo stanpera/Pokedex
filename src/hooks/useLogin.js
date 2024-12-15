@@ -72,7 +72,7 @@ const useLogin = () => {
     setPassword("");
     enqueueSnackbar("Zostałeś pomyślnie wylogowany.", { variant: "success" });
     if (location.pathname === "/") {
-      window.location.href = window.location.href;
+      window.location.reload();
     } else {
       navigate("/");
     }

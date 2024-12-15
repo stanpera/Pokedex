@@ -2,7 +2,7 @@ import useFetchPokemonList from "../../../hooks/useFetchPokemonList";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import RegistrationInput from "../Registration/RegistrationInput";
+import Input from "../Other/Input";
 import Button from "../Other/Button";
 import usePokemonUpdate from "../../../hooks/usePokemonUpdate";
 import clsx from "clsx";
@@ -132,35 +132,35 @@ const CreatePokemonForm = () => {
           className="flex flex-col mt-3 font-itim text-base lg:text-lg xl:text-xl gap-y-3"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <RegistrationInput
+          <Input
             register={register}
             name="name"
             inputType="text"
             placeholder="Wprowadź imię"
             error={errors.name}
           />
-          <RegistrationInput
+          <Input
             register={register}
             name="weight"
             inputType="number"
             placeholder="Wprowadź wagę"
             error={errors.weight}
           />
-          <RegistrationInput
+          <Input
             register={register}
             name="height"
             inputType="number"
             placeholder="Wprowadź wzrost"
             error={errors.height}
           />
-          <RegistrationInput
+          <Input
             register={register}
             name="baseExperience"
             inputType="number"
             placeholder="Wprowadź punkty doświadczenia"
             error={errors.baseExperience}
           />
-          <RegistrationInput
+          <Input
             register={register}
             name="ability"
             inputType="text"

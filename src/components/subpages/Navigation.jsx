@@ -5,7 +5,6 @@ import logoPokedex from "../../icons/logoPokedex.png";
 import Button from "../shared/Other/Button";
 import ThemeSwitcher from "../shared/NavigationElements/ThemeSwitcher";
 import UserLogo from "../shared/NavigationElements/UserLogo";
-import { ThemeContext } from "../../context/ThemeContext";
 import { useSnackbar } from "notistack";
 import clsx from "clsx";
 import NavBarIcon from "../shared/NavigationElements/NavBarIcon";
@@ -14,7 +13,6 @@ const Navigation = () => {
   const { isLoggedIn, handleSubmit, name } = useContext(LoginContext);
   const [navBar, setNavBar] = useState(false);
   const navigate = useNavigate();
-  const { theme } = useContext(ThemeContext);
   const { enqueueSnackbar } = useSnackbar();
 
   const handleButtonClick = (path) => {
@@ -33,19 +31,16 @@ const Navigation = () => {
 
   return (
     <nav
-      className={clsx(
-        "flex w-full top-0 justify-between py-5 px-10 shadow-md",
-        theme === "light"
-          ? "bg-navigation-gradient shadow-navigation-shadow"
-          : "bg-dark-navigation-gradient shadow-dark-black"
-      )}
+      className={
+        "flex w-full top-0 justify-between py-5 px-10 shadow-md bg-navigation-gradient shadow-navigation-shadow dark:bg-dark-navigation-gradient dark:shadow-dark-black"
+      }
     >
       <div className="flex items-start lg:items-center">
         <Link to="/">
           <img
             src={logoPokedex}
             alt="Pokedex Logo"
-            className={clsx("md:h-16 h-10")}
+            className={"md:h-16 h-10"}
           />
         </Link>
       </div>

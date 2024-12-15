@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import RegistrationInput from "./RegistrationInput";
+import Input from "../Other/Input";
 import Button from "../Other/Button";
 import useRegistration from "../../../hooks/useRegistration";
 
@@ -49,28 +49,28 @@ const RegistrationForm = () => {
         className="flex flex-col w-96 gap-y-3"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <RegistrationInput
+        <Input
           register={register}
           name="name"
           inputType="text"
           placeholder="Wpisz imię"
           error={errors.name}
         />
-        <RegistrationInput
+        <Input
           register={register}
           name="email"
           inputType="text"
           placeholder="Wpisz email"
           error={errors.email}
         />
-        <RegistrationInput
+        <Input
           register={register}
           name="password"
           inputType="password"
           placeholder="Wpisz hasło"
           error={errors.password}
         />
-        <RegistrationInput
+        <Input
           register={register}
           name="confirmPassword"
           inputType="password"

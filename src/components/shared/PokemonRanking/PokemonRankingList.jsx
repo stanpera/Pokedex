@@ -9,15 +9,13 @@ const PokemonRankingList = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [descending, setDescending] = useState(true);
   const [sortOption, setSortOption] = useState("win");
-  const [pokemonAfterFight, setPokemonAfterFight] = useState([]);
   const { data, loading, error } = useFetchPokemonList(
     "http://localhost:3000/updatedPokemons"
   );
-
   const toggleSortDirection = () => {
     setDescending((prev) => !prev);
   };
-  
+
   const sortData = (data, option) => {
     if (descending) {
       const sorted = [...data].sort((a, b) => {
@@ -42,16 +40,15 @@ const PokemonRankingList = () => {
 
   useEffect(() => {
     if (data) {
-      setPokemonAfterFight(
-        data.filter(
-          (pokeAfterFight) =>
-            pokeAfterFight.win !== null && pokeAfterFight.lost !== null
-        )
+      const pokemonsFiltered = data?.filter(
+        (pokeAfterFight) =>
+          pokeAfterFight.win !== null && pokeAfterFight.lost !== null
       );
-      const sortedData = sortData(pokemonAfterFight, sortOption);
+      const sortedData = sortData(pokemonsFiltered, sortOption);
       setFilteredData(sortedData);
     }
-  }, [data, , sortOption, descending]);
+  }, [data, sortOption, descending]);
+  
 
   const handleSelectChange = (e) => {
     setSortOption(e.target.value);

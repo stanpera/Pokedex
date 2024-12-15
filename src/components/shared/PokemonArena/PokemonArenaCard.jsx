@@ -1,26 +1,24 @@
-import { useContext, useRef, useEffect, useState } from "react";
-import { ThemeContext } from "../../../context/ThemeContext";
 import clsx from "clsx";
 import useArena from "../../../hooks/useArena";
 import DeleteIcon from "./DeleteIcon";
 import Confetti from "react-confetti";
 import NameContainer from "../PokemonList/NameContainer";
 import AbilityContainer from "../PokemonList/AbilityContainer";
-const PokemonArenaCard = ({
-  id,
-  name,
-  image,
-  height,
-  weight,
-  baseExperience,
-  ability,
-  win,
-  lost,
-  onArenaChange,
-  isWinner,
-  isLoser,
-}) => {
-  const { theme } = useContext(ThemeContext);
+import { useState, useRef, useEffect } from "react";
+
+const PokemonArenaCard = ({ pokemon, onArenaChange, isWinner, isLoser }) => {
+  const {
+    id,
+    name,
+    image,
+    height,
+    weight,
+    baseExperience,
+    ability,
+    win,
+    lost,
+  } = pokemon || {};
+
   const { isArena, toggleArena } = useArena(name);
   const cardRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -52,12 +50,9 @@ const PokemonArenaCard = ({
 
   return (
     <div
-      ref={cardRef} 
+      ref={cardRef}
       className={clsx(
-        "relative flex flex-col items-center shadow-md py-5 lg:py-10 rounded-lg h-[360px] lg:h-[510px] w-[240px] lg:w-[360px]",
-        theme === "light"
-          ? "bg-pokemon-card shadow-pokemon-card-shadow"
-          : "bg-dark-pokemon-card shadow-dark-pokemon-card-shadow",
+        "relative flex flex-col items-center shadow-md py-5 lg:py-10 rounded-lg h-[360px] lg:h-[510px] w-[240px] lg:w-[360px] dark:bg-dark-pokemon-card dark:shadow-dark-pokemon-card-shadow",
         name === null && "justify-center ",
         name !== null &&
           "hover:shadow-lg transform transition-all duration-200 ease-in-out cursor-pointer hover:scale-105",
@@ -69,8 +64,7 @@ const PokemonArenaCard = ({
       {(win > 0 || lost > 0) && (
         <div
           className={clsx(
-            "text-sm lg:text-lg xl:text-xl font-itim absolute top-0 left-0 md:p-2 p-1  rounded-tl-md rounded-br-md",
-            theme === "light" ? "bg-main-gray font-bold" : "bg-dark-black"
+            "text-sm lg:text-lg xl:text-xl font-itim absolute top-0 left-0 md:p-2 p-1  rounded-tl-md rounded-br-md bg-main-gray font-bold dark:bg-dark-black"
           )}
         >
           <p>W: {win}</p>

@@ -7,7 +7,8 @@ import Loading from "../Other/Loading";
 const PokemonDetailsPage = () => {
   const { name } = useParams();
   const { data, loading, error } = useFetchPokemonList(
-    `https://pokeapi.co/api/v2/pokemon/${name}`
+    `https://pokeapi.co/api/v2/pokemon/${name}`,
+    `http://localhost:3000/updatedPokemons/${name}`
   );
 
   if (loading) {

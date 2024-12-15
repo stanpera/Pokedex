@@ -14,7 +14,7 @@ const mapUpdatedPokemons = (originalList, updatedList) => {
   });
 };
 
-const useFetchPokemonList = (url) => {
+const useFetchPokemonList = (url, url2) => {
   const { isLoggedIn } = useContext(LoginContext);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -31,6 +31,10 @@ const useFetchPokemonList = (url) => {
         }
         const result = await response.json();
 
+        if (url === `http://localhost:3000/updatedPokemons`)
+          return setData(result);
+
+        // if(url !== `http://localhost:3000/updatedPokemons`) {}
         const updatedResponse = await fetch(
           `http://localhost:3000/updatedPokemons`
         );
@@ -69,14 +73,25 @@ const useFetchPokemonList = (url) => {
           setData(result);
         }
       } catch (err) {
-        setError(true);
+        try {
+          const fallbackResponse = await fetch(url2);
+          if (!fallbackResponse.ok) {
+            throw new Error(
+              "Błąd podczas pobierania danych z lokalnego serwera."
+            );
+          }
+          const fallbackResult = await fallbackResponse.json();
+          setData(fallbackResult);
+        } catch (fallbackErr) {
+          setError("Nie udało się pobrać danych z żadnego źródła.");
+        }
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [url]);
+  }, [url, url2]);
 
   return { data, loading, error };
 };

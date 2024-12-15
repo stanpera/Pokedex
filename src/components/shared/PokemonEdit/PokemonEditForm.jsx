@@ -3,7 +3,7 @@ import useFetchPokemonList from "../../../hooks/useFetchPokemonList";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import RegistrationInput from "../Registration/RegistrationInput";
+import Input from "../Other/Input";
 import Button from "../Other/Button";
 import usePokemonUpdate from "../../../hooks/usePokemonUpdate";
 import clsx from "clsx";
@@ -86,7 +86,7 @@ const PokemonEditForm = () => {
           <label htmlFor="height" className="text-center">
             Wzrost przed edycją: {data?.height}
           </label>
-          <RegistrationInput
+          <Input
             register={register}
             name="height"
             inputType="number"
@@ -98,7 +98,7 @@ const PokemonEditForm = () => {
           <label htmlFor="weight" className="text-center">
             Waga przed edycją: {data?.weight}
           </label>
-          <RegistrationInput
+          <Input
             register={register}
             name="weight"
             inputType="number"
@@ -111,7 +111,7 @@ const PokemonEditForm = () => {
             Doświadczenie przed edycją:{" "}
             {data?.base_experience || data?.baseExperience}
           </label>
-          <RegistrationInput
+          <Input
             register={register}
             name="baseExperience"
             inputType="number"

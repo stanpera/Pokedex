@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import PokemonArenaResults from "./PokemonArenaResults";
 import usePokemonUpdate from "../../../hooks/usePokemonUpdate";
 import useArena from "../../../hooks/useArena";
+import { useCallback } from "react";
 
 const PokemonArenaList = () => {
   const [refreshKey, setRefreshKey] = useState(0);
@@ -81,11 +82,11 @@ const PokemonArenaList = () => {
     [refreshKey]
   );
 
-  const handleRefresh = () => {
+  const handleRefresh = useCallback(() => {
     setRefreshKey((prevKey) => prevKey + 1);
-  };
+  }, []);
 
-  const handleBaseExperienceUpdate = (pokemon1, pokemon2) => {
+  const handleBaseExperienceUpdate = useCallback((pokemon1, pokemon2) => {
     if (
       pokemon1.baseExperience * pokemon1.weight >
       pokemon2.baseExperience * pokemon2.weight
@@ -118,9 +119,9 @@ const PokemonArenaList = () => {
       ];
     }
     return [pokemon1, pokemon2];
-  };
+  }, []);
 
-  const handleFight = () => {
+  const handleFight = useCallback(() => {
     if (!disabled) {
       setPokemonData((prevPokemonData) =>
         handleBaseExperienceUpdate(prevPokemonData[0], prevPokemonData[1])
@@ -141,9 +142,9 @@ const PokemonArenaList = () => {
     } else {
       setWhoWon("draw");
     }
-  };
+  }, [pokemonData]);
 
-  const handleExit = () => {
+  const handleExit = useCallback(() => {
     manageUpdate(pokemonData[0]);
     manageUpdate(pokemonData[1]);
     setWhoWon("initial");
@@ -151,7 +152,7 @@ const PokemonArenaList = () => {
     deleteAllFromArena([pokemonData[0].id]);
     deleteAllFromArena(pokemonData[1].id);
     navigate("/");
-  };
+  }, [pokemonData, deleteAllFromArena]);
 
   if (loading) {
     return <Loading />;
@@ -169,15 +170,7 @@ const PokemonArenaList = () => {
     <div className="relative flex flex-col items-center mt-10">
       <div className="flex flex-col sm:flex-row w-10/12 lg:w-3/4  items-center justify-center mb-10">
         <PokemonArenaCard
-          id={pokemonData[0].id}
-          name={pokemonData[0].name}
-          image={pokemonData[0].image}
-          height={pokemonData[0].height}
-          weight={pokemonData[0].weight}
-          baseExperience={pokemonData[0].baseExperience}
-          ability={pokemonData[0].ability}
-          win={pokemonData[0].win}
-          lost={pokemonData[0].lost}
+          pokemon={pokemonData[0]}
           onArenaChange={handleRefresh}
           isWinner={whoWon === "first"}
           isLoser={whoLose === "first"}
@@ -188,15 +181,7 @@ const PokemonArenaList = () => {
           <ExitArenaIcon onClick={handleExit} />
         )}
         <PokemonArenaCard
-          id={pokemonData[1].id}
-          name={pokemonData[1].name}
-          image={pokemonData[1].image}
-          height={pokemonData[1].height}
-          weight={pokemonData[1].weight}
-          baseExperience={pokemonData[1].baseExperience}
-          ability={pokemonData[1].ability}
-          win={pokemonData[1].win}
-          lost={pokemonData[1].lost}
+          pokemon={pokemonData[1]}
           onArenaChange={handleRefresh}
           isWinner={whoWon === "second"}
           isLoser={whoLose === "second"}

@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css"; // Upewnij się, że Font Awesome jest załadowany
 import clsx from "clsx";
-import { useContext } from "react";
-import { ThemeContext } from "../../../context/ThemeContext";
 
-const RegistrationInput = ({
+const Input = ({
   register,
   name,
   placeholder,
   error,
   inputType,
+  onChange,
+  value,
 }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const { theme } = useContext(ThemeContext);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible((prevState) => !prevState);
@@ -22,7 +21,7 @@ const RegistrationInput = ({
     <>
       <div className="flex text-center justify-center items-center">
         <input
-          {...register(name)}
+          {...(register ? register(name) : { name, value, onChange })}
           type={
             inputType === "password"
               ? passwordVisible
@@ -32,14 +31,11 @@ const RegistrationInput = ({
           }
           placeholder={placeholder}
           className={clsx(
-            "w-full text-center mr-3 py-1 text-green rounded-md text-lg",
-            error ? "border-solid border-2 border-error-text" : "border-none",
-            theme === "light"
-              ? "bg-form-input"
-              : "bg-dark-form-input text-dark-black"
+            "w-full text-center mr-3 py-1 text-green rounded-md text-lg bg-form-input dark:bg-dark-form-input dark:text-dark-black",
+            error ? "border-solid border-2 border-error-text" : "border-none"
           )}
         />
-        {(name === "password" || name === "confirmPassword") && (
+        {inputType === "password" && (
           <span
             onClick={togglePasswordVisibility}
             className="cursor-pointer text-#555"
@@ -54,12 +50,13 @@ const RegistrationInput = ({
         )}
       </div>
       {error && (
-        <p className={"text-base text-center text-main-red"}>
-          {error.message}
-        </p>
+        <p className={"text-base text-center text-main-red"}>{error.message}</p>
       )}
     </>
   );
 };
 
-export default RegistrationInput;
+export default Input;
+
+
+

@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+// import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ThemeProvider } from "./context/ThemeContext.jsx";
 import "./index.css";
@@ -8,7 +8,7 @@ import AppSizeWrapper from "./components/shared/AppWrappers.jsx/AppSizeWrapper.j
 import { SnackbarProvider } from "notistack";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+
     <ThemeProvider>
       <AppColorWrapper>
         <AppSizeWrapper>
@@ -18,5 +18,5 @@ createRoot(document.getElementById("root")).render(
         </AppSizeWrapper>
       </AppColorWrapper>
     </ThemeProvider>
-  </StrictMode>
+
 );

@@ -1,9 +1,6 @@
-import clsx from "clsx"; 
-import { ThemeContext } from "../../../context/ThemeContext";
-import { useContext } from "react";
+import clsx from "clsx";
 
 const Loading = ({ edit }) => {
-  const { theme } = useContext(ThemeContext);
 
   return (
     <div
@@ -15,12 +12,9 @@ const Loading = ({ edit }) => {
     >
       <p>Trwa pobieranie danych...</p>
       <div
-        className={clsx(
-          "w-10 h-10 border-4 rounded-full animate-spin",
-          theme === "light"
-            ? "border-main-gray border-t-main-text-color"
-            : "border-dark-red border-t-dark-main-text-color"
-        )}
+        className={
+          "w-10 h-10 border-4 rounded-full animate-spin border-main-gray border-t-main-text-color dark:border-dark-red dark:border-t-dark-main-text-color"
+        }
       ></div>
     </div>
   );

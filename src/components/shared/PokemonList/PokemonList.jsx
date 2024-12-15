@@ -12,11 +12,9 @@ const PokemonList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
   const offset = (currentPage - 1) * itemsPerPage;
-  const createdPokemonOffset = (currentPage - 11) * itemsPerPage;
   const [filteredData, setFilteredData] = useState([]);
   const { totalAmountPages } = usePageNumber({
     jsonUrl: `http://localhost:3000/updatedPokemons?isCustomPokemon_gte=1`,
-    apiUrl: "https://pokeapi.co/api/v2/pokemon?offset=0&limit=150",
   });
   const totalPages = totalAmountPages;
   const url =
@@ -77,3 +75,7 @@ const PokemonList = () => {
 };
 
 export default PokemonList;
+
+
+
+

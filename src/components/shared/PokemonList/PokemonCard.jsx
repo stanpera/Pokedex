@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import { ThemeContext } from "../../../context/ThemeContext";
-import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
 import AbilityContainer from "./AbilityContainer";
 import NameContainer from "./NameContainer";
@@ -14,7 +11,6 @@ const PokemonCard = ({
   win,
   lost,
 }) => {
-  const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -24,26 +20,22 @@ const PokemonCard = ({
   return (
     <div
       onClick={handleCardClick}
-      className={clsx(
-        "relative flex flex-col items-center shadow-md py-5 lg:py-10 rounded-lg w-[240px] lg:w-[360px] hover:scale-105 hover:shadow-lg transform transition-all duration-200 ease-in-out cursor-pointer",
-        theme === "light"
-          ? "bg-pokemon-card shadow-pokemon-card-shadow"
-          : "bg-dark-pokemon-card shadow-dark-pokemon-card-shadow"
-      )}
+      className={
+        "relative flex flex-col items-center shadow-md py-5 lg:py-10 rounded-lg w-[240px] lg:w-[360px] hover:scale-105 hover:shadow-lg transform transition-all duration-200 ease-in-out cursor-pointer bg-pokemon-card shadow-pokemon-card-shadow dark:bg-dark-pokemon-card dark:shadow-dark-pokemon-card-shadow"
+      }
     >
       {(win > 0 || lost > 0) && (
         <div
-          className={clsx(
-            "text-base lg:text-lg xl:text-xl font-itim absolute top-0 left-0 p-2  rounded-tl-md rounded-br-md",
-            theme === "light" ? "bg-main-gray font-bold" : "bg-dark-black"
-          )}
+          className={
+            "text-base lg:text-lg xl:text-xl font-itim absolute top-0 left-0 p-2  rounded-tl-md rounded-br-md bg-main-gray font-bold dark:bg-dark-black"
+          }
         >
           <p>W: {win}</p>
           <p>L: {lost}</p>
         </div>
       )}
       <div className="flex justify-center">
-        <img className={clsx("w-40 lg:w-64")} src={image} alt={name} />
+        <img className={"w-40 lg:w-64"} src={image} alt={name} />
       </div>
       <NameContainer parametr={name} />
       <div className="mt-5 w-3/4 flex justify-between">

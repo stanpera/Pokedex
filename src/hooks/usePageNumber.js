@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { LoginContext } from "../context/LoginContext";
 
-const usePageNumber = ({ jsonUrl, apiUrl }) => {
+const usePageNumber = ({ jsonUrl }) => {
   const { isLoggedIn } = useContext(LoginContext);
   const [totalAmountPages, setTotalAmountPages] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -12,33 +12,28 @@ const usePageNumber = ({ jsonUrl, apiUrl }) => {
     const fetchData = async () => {
       setLoading(true);
       setError(null);
-      try {
-        if (apiUrl && isLoggedIn) {
-          const apiResponse = await fetch(apiUrl);
-          if (!apiResponse.ok) {
-            throw new Error("Wystąpił błąd podczas pobierania danych.");
-          }
-          const apiResult = await apiResponse.json();
+      const apiPokemonsAmount = 150;
 
+      try {
+        if (
+          isLoggedIn &&
+          jsonUrl ===
+            `http://localhost:3000/updatedPokemons?isCustomPokemon_gte=1`
+        ) {
           const createdPokemonsResponse = await fetch(jsonUrl);
           if (!createdPokemonsResponse.ok) {
             throw new Error("Wystąpił błąd podczas pobierania danych.");
           }
           const createdPokemons = await createdPokemonsResponse.json();
 
-          const pokemonsAmount = [...apiResult.results, ...createdPokemons];
-          const numberOfPages = Math.ceil(pokemonsAmount.length / 15);
+          const numberOfPages = Math.ceil(
+            (createdPokemons.length + apiPokemonsAmount) / 15
+          );
           setTotalAmountPages(numberOfPages);
-        } else if (apiUrl && !isLoggedIn) {
-          const apiResponse = await fetch(apiUrl);
-          if (!apiResponse.ok) {
-            throw new Error("Wystąpił błąd podczas pobierania danych.");
-          }
-          const apiResult = await apiResponse.json();
-
-          const numberOfPages = Math.ceil(apiResult.results.length / 15);
-          setTotalAmountPages(numberOfPages);
-        } else {
+        } else if (
+          isLoggedIn &&
+          jsonUrl === `http://localhost:3000/favouritePokemons`
+        ) {
           const favouritePokemonsResponse = await fetch(jsonUrl);
           if (!favouritePokemonsResponse.ok) {
             throw new Error("Wystąpił błąd podczas pobierania danych.");
@@ -46,6 +41,9 @@ const usePageNumber = ({ jsonUrl, apiUrl }) => {
           const favouritePokemons = await favouritePokemonsResponse.json();
 
           const numberOfPages = Math.ceil(favouritePokemons.length / 15);
+          setTotalAmountPages(numberOfPages);
+        } else if (!isLoggedIn) {
+          const numberOfPages = Math.ceil(apiPokemonsAmount / 15);
           setTotalAmountPages(numberOfPages);
         }
       } catch (err) {

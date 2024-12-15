@@ -12,17 +12,15 @@ const PokemonEditList = () => {
   const itemsPerPage = 15;
   const [currentPage, setCurrentPage] = useState(1);
   const offset = (currentPage - 1) * itemsPerPage;
-  const createdPokemonOffset = (currentPage - 11) * itemsPerPage;
   const navigate = useNavigate();
   const { totalAmountPages } = usePageNumber({
-    jsonUrl: `http://localhost:3000/updatedPokemons?isCustomPokemon_gte=1&_start=0&_limit=10`,
-    apiUrl: "https://pokeapi.co/api/v2/pokemon?offset=0&limit=150",
+    jsonUrl: `http://localhost:3000/updatedPokemons?isCustomPokemon_gte=1`,
   });
   const totalPages = totalAmountPages;
   const url =
-    offset <= 149
+    offset <= 135
       ? `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${itemsPerPage}`
-      : `http://localhost:3000/updatedPokemons?isCustomPokemon_gte=1&_start=${createdPokemonOffset}&_limit=${itemsPerPage}`;
+      : `http://localhost:3000/updatedPokemons?isCustomPokemon_gte=1&_start=0&_limit=${itemsPerPage}`;
   const { data, loading, error } = useFetchPokemonList(url);
 
   const handlePokemonCreate = () => {

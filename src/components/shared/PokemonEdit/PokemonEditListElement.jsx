@@ -1,12 +1,9 @@
 import Button from "../Other/Button";
 import NameContainer from "../PokemonList/NameContainer";
 import clsx from "clsx";
-import { useContext } from "react";
-import { ThemeContext } from "../../../context/ThemeContext";
 import { useNavigate } from "react-router-dom";
 
 const PokemonEditListElement = ({ name, id, image }) => {
-  const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
 
   const handlePokemonEdit = () => {
@@ -15,12 +12,9 @@ const PokemonEditListElement = ({ name, id, image }) => {
 
   return (
     <div
-      className={clsx(
-        " flex flex-col w-4/5 lg:w-2/5 shadow-md py-2 px-5 rounded-lg",
-        theme === "light"
-          ? "bg-pokemon-card shadow-pokemon-card-shadow"
-          : "bg-dark-pokemon-card shadow-dark-pokemon-card-shadow"
-      )}
+      className={
+        " flex flex-col w-4/5 lg:w-2/5 shadow-md py-2 px-5 rounded-lg bg-pokemon-card shadow-pokemon-card-shadow dark:bg-dark-pokemon-card dark:shadow-dark-pokemon-card-shadow"
+      }
     >
       <div className="flex items-center justify-between ">
         <p className="text-2xl xl:text-3xl font-bangers mr-2">{id}.</p>
